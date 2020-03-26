@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../sass/app.scss';
+import io from 'socket.io-client';
 
-function App() {
+import MessageForm from './MessageForm';
+import Messages from './Messages';
+
+const socketHost = 'http://localhost:4000';
+let socket = io(socketHost);
+
+const App = () => {
+	const [messages, setMessages] = useState([]);
+	const [feedback, setFeedback] = useState('');
+
+	useEffect(() => {
+		socket.on('chat', (message) => setMessages((messages) => [...messages, message]));
+	}, []);
+
+	useEffect(() => {
+		socket.on('typing', (data) => setFeedback(data));
+	}, []);
+
 	return (
 		<div className="app">
 			<h2>Hack Chat</h2>
-			<div className="chat-window">
-				<div className="chat-window__output"></div>
-				<div className="chat-window__feedback"></div>
-			</div>
-
-			<form className="chat-input">
-				<input className="chat-input__handle" type="test" placeholder="Handle" />
-				<input className="chat-input__message" type="text" placeholder="Message" />
-				<input className="chat-input__submit" type="submit" value="send" />
-			</form>
+			<Messages content={messages} feedback={feedback} />
+			<MessageForm socket={socket} />
 		</div>
 	);
-}
+};
 
 export default App;
