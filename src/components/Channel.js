@@ -30,7 +30,7 @@ const Channel = () => {
 	return (
 		<div className="app">
 			<h2>Hack Chat</h2>
-			<Messages content={messages} feedback={feedback} />
+			<Messages content={messages} feedback={feedback} socket={socket} />
 			<MessageForm socket={socket} />
 		</div>
 	);

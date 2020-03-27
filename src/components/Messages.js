@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Messages = ({ content, feedback }) => {
-	const messages = content.map(({ handle, message }, index) => (
-		<Message key={index} handle={handle} message={message} />
-	));
+const Messages = ({ content, feedback, socket }) => {
+	const messages = content.map(({ handle, message, id }, index) => {
+		const className = socket.id === id ? 'user' : 'friend';
+		return <Message key={index} handle={handle} message={message} className={className} />;
+	});
 
 	return (
 		<div className="chat-window">
@@ -13,8 +14,8 @@ const Messages = ({ content, feedback }) => {
 	);
 };
 
-const Message = ({ handle, message }) => (
-	<p>
+const Message = ({ handle, message, className }) => (
+	<p className={className}>
 		<strong> {handle} :</strong>
 		<span>{message}</span>
 	</p>

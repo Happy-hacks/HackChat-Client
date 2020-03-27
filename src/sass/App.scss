@@ -17,6 +17,12 @@
 		background: #f9f9f9;
 	}
 
+	.chat-window__output {
+		.user {
+			text-align: right;
+		}
+	}
+
 	.chat-window__output p {
 		padding: 14px 0px;
 		margin: 0 20px;

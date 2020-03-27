@@ -11,7 +11,7 @@ const MessageForm = ({ socket }) => {
 
 	const onClick = (event, handle, message) => {
 		event.preventDefault();
-		socket.emit('chat', { message, handle });
+		socket.emit('chat', { message, handle, id: socket.id });
 	};
 
 	const onTyping = () => {
