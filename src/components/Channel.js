@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
+// libraries
+import { Redirect, useLocation } from 'react-router-dom';
+import io from 'socket.io-client';
+
+// components
 import MessageForm from './MessageForm';
 import Messages from './Messages';
 
-import '../sass/App.scss';
-import io from 'socket.io-client';
-
+// should come from .env
 const socketHost = 'http://localhost:4000';
-let socket = io(socketHost);
+
+// should be used as hook, so it want try to connect before this component
+const socket = io(socketHost);
 
 const Channel = () => {
 	const [messages, setMessages] = useState([]);
@@ -26,6 +31,12 @@ const Channel = () => {
 			}, 1000);
 		});
 	}, []);
+
+	try {
+		if (!useLocation().state.authenticated) return <Redirect to="/login" />;
+	} catch {
+		return <Redirect to="/login" />;
+	}
 
 	return (
 		<div className="app">

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 
+// libraries
+import { useLocation } from 'react-router-dom';
+
 const MessageForm = ({ socket }) => {
-	const [handle, setHandle] = useState('');
 	const [message, setMessage] = useState('');
+	const handle = useLocation().state.handle;
 
-	const setValues = (event) => {
-		if (event.target.name === 'handle') setHandle(event.target.value);
-		else if (event.target.name === 'message') setMessage(event.target.value);
-	};
-
-	const onClick = (event, handle, message) => {
+	const onClick = (event) => {
 		event.preventDefault();
 		socket.emit('chat', { message, handle, id: socket.id });
 	};
@@ -20,17 +18,13 @@ const MessageForm = ({ socket }) => {
 
 	return (
 		<form className="chat-input">
-			<input
-				className="chat-input__handle"
-				placeholder="Handle"
-				name="handle"
-				onChange={(event) => setValues(event)}
-			/>
+			<span className="chat-input__handle">{useLocation().state.handle}</span>
 			<input
 				className="chat-input__message"
 				placeholder="Message"
 				name="message"
-				onChange={(event) => setValues(event)}
+				required
+				onChange={(event) => setMessage(event.target.value)}
 				onKeyPress={() => onTyping()}
 				value={message}
 			/>
@@ -39,7 +33,7 @@ const MessageForm = ({ socket }) => {
 				type="submit"
 				value="send"
 				onClick={(event) => {
-					onClick(event, handle, message);
+					onClick(event);
 					setMessage('');
 				}}
 			/>
