@@ -1,27 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Messages = ({ content, feedback }) => {
 	const messages = content.map(({ handle, message }, index) => (
 		<Message key={index} handle={handle} message={message} />
 	));
 
-	useEffect(() => {
-		const feedbackLoop = setInterval(() => {
-			if (new Date().getTime() - feedback.time > 3000) {
-				console.log('reset feedback here...'); // RESET FEEDBACK HERE
-				clearInterval(feedbackLoop);
-			}
-		});
-
-		return () => {
-			clearInterval(feedbackLoop);
-		};
-	});
-
 	return (
 		<div className="chat-window">
 			<div className="chat-window__output">{messages}</div>
-			{feedback && <Feedback data={feedback.handle} />}
+			{feedback && <Feedback handle={feedback} />}
 		</div>
 	);
 };
@@ -33,10 +20,10 @@ const Message = ({ handle, message }) => (
 	</p>
 );
 
-const Feedback = ({ data }) => (
+const Feedback = ({ handle }) => (
 	<div className="chat-window__feedback">
 		<p>
-			<em> {data} is typing a message.. </em>
+			<em> {handle} is typing a message.. </em>
 		</p>
 	</div>
 );

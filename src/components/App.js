@@ -17,7 +17,13 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
-		socket.on('typing', (data) => setFeedback(data));
+		socket.on('typing', (data) => {
+			setFeedback(data);
+
+			setTimeout(() => {
+				setFeedback(undefined);
+			}, 1000);
+		});
 	}, []);
 
 	return (

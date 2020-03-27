@@ -15,8 +15,7 @@ const MessageForm = ({ socket }) => {
 	};
 
 	const onTyping = () => {
-		const time = new Date().getTime();
-		socket.emit('typing', { handle, time });
+		socket.emit('typing', handle);
 	};
 
 	return (
