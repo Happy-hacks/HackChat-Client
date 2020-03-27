@@ -1,37 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import '../sass/App.scss';
-import io from 'socket.io-client';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import MessageForm from './MessageForm';
-import Messages from './Messages';
-
-const socketHost = 'http://localhost:4000';
-let socket = io(socketHost);
+import Channel from './Channel';
 
 const App = () => {
-	const [messages, setMessages] = useState([]);
-	const [feedback, setFeedback] = useState('');
-
-	useEffect(() => {
-		socket.on('chat', (message) => setMessages((messages) => [...messages, message]));
-	}, []);
-
-	useEffect(() => {
-		socket.on('typing', (data) => {
-			setFeedback(data);
-
-			setTimeout(() => {
-				setFeedback(undefined);
-			}, 1000);
-		});
-	}, []);
-
 	return (
-		<div className="app">
-			<h2>Hack Chat</h2>
-			<Messages content={messages} feedback={feedback} />
-			<MessageForm socket={socket} />
-		</div>
+		<Router>
+			<Switch>
+				<Route exact path="/" children={<Channel />} />
+				<Route path="/login" children={<h2>login</h2>} />
+				<Route path="/channels" children={<h2>channels</h2>} />
+				<Route path="/settings" children={<h2>settings</h2>} />
+				<Route path="*" children={<h2>error</h2>} />
+			</Switch>
+		</Router>
 	);
 };
 
