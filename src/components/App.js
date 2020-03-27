@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../sass/app.scss';
+import '../sass/App.scss';
 import io from 'socket.io-client';
 
 import MessageForm from './MessageForm';
