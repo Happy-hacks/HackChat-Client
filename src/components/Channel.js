@@ -8,11 +8,9 @@ import io from 'socket.io-client';
 import MessageForm from './MessageForm';
 import Messages from './Messages';
 
-// should come from .env
-const socketHost = 'http://localhost:4000';
-
 // should be used as hook, so it want try to connect before this component
-const socket = io(socketHost);
+import env from '../scripts/environment';
+const socket = io(env.SOCKET_HOST);
 
 const Channel = () => {
 	const [messages, setMessages] = useState([]);
