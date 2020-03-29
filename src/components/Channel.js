@@ -37,8 +37,8 @@ const Channel = () => {
 	}
 
 	return (
-		<div className="app">
-			<h2>Hack Chat</h2>
+		<div className="channel">
+			<h2>main channel</h2>
 			<Messages content={messages} feedback={feedback} socket={socket} />
 			<MessageForm socket={socket} />
 		</div>

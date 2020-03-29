@@ -1,66 +1,158 @@
+$white: #ffffff;
+$vibrant-light: #00a3ff;
+$vibrant-dark: #0057ff;
+$vibrant-gradient: linear-gradient(135deg, $vibrant-light, $vibrant-dark);
+
+// dark theme
+$base-color: #17212c;
+$main-color: #d7e0e9;
+$main-color-opaque: rgba($main-color, 0.5);
+$messages-soft: #2c3f51;
+
+// // light theme
+// $base-color: #dbe7f2;
+// $main-color: #697e93;
+// $main-color-opaque: rgba($main-color, 0.5);
+// $messages-soft: #88a7c5;
+
 .app {
 	max-width: 500px;
 	margin: 30px auto;
-	border: 1px solid #ddd;
-	box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.05);
-	border-radius: 2px;
+	box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	background-color: $base-color;
+	height: 90vh;
 
-	h2 {
-		font-size: 18px;
-		padding: 10px 20px;
-		color: #575ed8;
+	.login {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 
-	.chat-window {
-		height: 70vh;
-		overflow: auto;
-		background: #f9f9f9;
-	}
+	.login__form {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
-	.chat-window__output {
-		.user {
-			text-align: right;
+		input {
+			font-size: 1.5em;
+			margin-top: 25px;
+			border: none;
+			outline: none;
+
+			&::placeholder {
+				color: $main-color-opaque;
+				font-style: italic;
+			}
+		}
+
+		.login__handle,
+		.login__password {
+			color: $main-color;
+			text-align: center;
+			height: 60px;
+			background: none;
+			border-bottom: 0.5px solid $main-color-opaque;
+			width: 100%;
+		}
+
+		.login__submit {
+			width: 100px;
 		}
 	}
 
-	.chat-window__output p {
-		padding: 14px 0px;
-		margin: 0 20px;
-		border-bottom: 1px solid #e9e9e9;
-		color: #555;
-	}
+	.channel {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 
-	.chat-window__output strong {
-		color: #575ed8;
-	}
+		height: 100%;
 
-	.chat-window__feedback p {
-		color: #aaa;
-		padding: 14px 0px;
-		margin: 0 20px;
-	}
+		h2 {
+			font-size: 18px;
+			font-weight: normal;
+			text-align: center;
+			padding-top: 30px;
+			color: $main-color-opaque;
+		}
 
-	.chat-input__handle,
-	.chat-input__message {
-		padding: 10px 20px;
-		box-sizing: border-box;
-		background: #eee;
-		border: 0;
-		display: block;
-		width: 100%;
-		background: #fff;
-		border-bottom: 1px solid #eee;
-		font-family: Nunito;
-		font-size: 16px;
-	}
+		.chat-window {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
 
-	.chat-input__submit {
-		background: #575ed8;
-		color: #fff;
-		font-size: 18px;
-		border: 0;
-		padding: 12px 0;
-		width: 100%;
-		border-radius: 0 0 2px 2px;
+			height: 100%; // not working correctly -> tobi fix!
+
+			.chat-window__output {
+				overflow: auto;
+				width: 100%;
+
+				.output__message {
+					margin: 0px 2rem;
+
+					label {
+						padding-left: 10px;
+						color: $main-color;
+						font-size: 1.5em;
+					}
+
+					p {
+						color: $white;
+						padding: 10px;
+						border-radius: 10px;
+						background-image: $vibrant-gradient;
+						box-shadow: 3px 3px 10px rgba($vibrant-light, 0.25);
+					}
+				}
+
+				.forwarded-message {
+					p {
+						background-image: none;
+						background-color: $messages-soft;
+						box-shadow: -3px -3px 10px rgba($messages-soft, 0.25);
+					}
+				}
+			}
+
+			.chat-window__feedback {
+				color: $main-color;
+				font-style: italic;
+				font-size: 16px;
+				padding-left: 2rem;
+			}
+		}
+
+		.chat-input {
+			height: 120px;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			border-top: 0.5px solid $main-color-opaque;
+
+			.chat-input__message {
+				font-size: 16px;
+				width: 100%;
+				padding: 30px;
+				color: $main-color;
+				background: none;
+				border: none;
+				outline: none;
+				resize: none;
+
+				&::placeholder {
+					color: $main-color-opaque;
+					font-style: italic;
+				}
+			}
+
+			.chat-input__submit {
+				margin: 30px;
+				width: 100px;
+			}
+		}
 	}
 }

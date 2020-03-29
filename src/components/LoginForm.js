@@ -25,19 +25,28 @@ const LoginForm = () => {
 	if (authenticated) return <Redirect to={{ pathname: '/', state: { authenticated, handle } }} />;
 
 	return (
-		<form className="">
-			<input className="" placeholder="handle" name="handle" required onChange={(event) => setValues(event)} />
-			<input
-				className=""
-				placeholder="password"
-				type="password"
-				name="password"
-				required
-				onChange={(event) => setValues(event)}
-				value={password}
-			/>
-			<input className="" type="submit" value="send" onClick={(event) => onClick(event)} />
-		</form>
+		<div className="login">
+			<h2>HackChat</h2>
+			<form className="login__form">
+				<input
+					className="login__handle"
+					placeholder="handle"
+					name="handle"
+					required
+					onChange={(event) => setValues(event)}
+				/>
+				<input
+					className="login__password"
+					placeholder="password"
+					type="password"
+					name="password"
+					required
+					onChange={(event) => setValues(event)}
+					value={password}
+				/>
+				<input className="login__submit" type="submit" value="enter" onClick={(event) => onClick(event)} />
+			</form>
+		</div>
 	);
 };
 

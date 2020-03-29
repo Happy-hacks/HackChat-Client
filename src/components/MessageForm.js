@@ -18,10 +18,9 @@ const MessageForm = ({ socket }) => {
 
 	return (
 		<form className="chat-input">
-			<span className="chat-input__handle">{useLocation().state.handle}</span>
-			<input
+			<textarea
 				className="chat-input__message"
-				placeholder="Message"
+				placeholder="message..."
 				name="message"
 				required
 				onChange={(event) => setMessage(event.target.value)}
