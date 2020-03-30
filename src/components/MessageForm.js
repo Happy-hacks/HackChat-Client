@@ -7,12 +7,17 @@ const MessageForm = ({ socket }) => {
 	const [message, setMessage] = useState('');
 	const handle = useLocation().state.handle;
 
-	const onClick = (event) => {
+	const onSubmit = (event) => {
 		event.preventDefault();
-		socket.emit('chat', { message, handle, id: socket.id });
+		if (message) socket.emit('chat', { message, handle, id: socket.id });
+		setMessage('');
 	};
 
-	const onTyping = () => {
+	const onTyping = (event) => {
+		const keyCode = window.event.keyCode;
+
+		if (keyCode === 13 && event.shiftKey) setMessage(message);
+		else if (keyCode === 13) return onSubmit(event);
 		socket.emit('typing', handle);
 	};
 
@@ -22,20 +27,11 @@ const MessageForm = ({ socket }) => {
 				className="chat-input__message"
 				placeholder="message..."
 				name="message"
-				required
 				onChange={(event) => setMessage(event.target.value)}
-				onKeyPress={() => onTyping()}
+				onKeyPress={(event) => onTyping(event)}
 				value={message}
 			/>
-			<input
-				className="chat-input__submit"
-				type="submit"
-				value="send"
-				onClick={(event) => {
-					onClick(event);
-					setMessage('');
-				}}
-			/>
+			<input className="chat-input__submit" type="submit" value="send" onClick={(event) => onSubmit(event)} />
 		</form>
 	);
 };

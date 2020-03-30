@@ -19,6 +19,8 @@ $messages-soft: #2c3f51;
     background-color: $base-color;
     height: 100vh;
 
+    box-sizing: border-box;
+
     .login {
         height: 100%;
         display: flex;
@@ -80,6 +82,9 @@ $messages-soft: #2c3f51;
             justify-content: space-between;
             overflow: auto;
             height: 100%; // not working correctly -> tobi fix!
+            margin: 10px;
+
+
 
             .chat-window__output {
                 width: 100%;
@@ -90,17 +95,26 @@ $messages-soft: #2c3f51;
                     label {
                         padding-left: 10px;
                         color: $main-color;
-                        font-size: 1.5em;
+                        font-size: 1.25em;
                     }
 
-                    p {
+                    pre {
+                        white-space: pre-wrap;
+                        overflow-wrap: break-word;
                         max-width: 80%;
+                        margin: 5px;
                         display: inline-block;
                         color: $white;
                         padding: 10px;
                         border-radius: 10px;
                         background-image: $vibrant-gradient;
                         box-shadow: 3px 3px 10px rgba($vibrant-light, 0.25);
+
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                            'Droid Sans', 'Helvetica Neue', sans-serif;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        background-color: #17212c;
                     }
                 }
 
@@ -108,10 +122,15 @@ $messages-soft: #2c3f51;
                     display: flex;
                     flex-direction: row-reverse;
 
-                    p {
+                    pre {
                         background-image: none;
                         background-color: $messages-soft;
                         box-shadow: -3px -3px 10px rgba($messages-soft, 0.25);
+
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                            'Droid Sans', 'Helvetica Neue', sans-serif;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
                     }
                 }
             }
@@ -165,4 +184,26 @@ $messages-soft: #2c3f51;
         border-radius: 5px;
         height: 90vh;
     }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: none;
+    margin: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba($main-color-opaque, .5);
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $main-color-opaque;
 }
