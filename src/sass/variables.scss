@@ -1,0 +1,17 @@
+// main colors
+$white: #ffffff;
+$vibrant-light: #00a3ff;
+$vibrant-dark: #0057ff;
+$vibrant-gradient: linear-gradient(135deg, $vibrant-light, $vibrant-dark);
+
+// dark theme
+$base-color: #17212c;
+$main-color: #d7e0e9;
+$main-color-opaque: rgba($main-color, 0.5);
+$messages-soft: #2c3f51;
+
+// // light theme
+// $base-color: #dbe7f2;
+// $main-color: #697e93;
+// $main-color-opaque: rgba($main-color, 0.5);
+// $messages-soft: #88a7c5;

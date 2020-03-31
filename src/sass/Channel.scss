@@ -1,0 +1,103 @@
+@import 'variables.scss';
+
+.channel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+
+    h2 {
+        font-size: 18px;
+        font-weight: normal;
+        text-align: center;
+        padding-top: 30px;
+        color: $main-color-opaque;
+    }
+
+    .chat-window {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: auto;
+        height: 100%;
+        margin: 10px;
+
+        .chat-window__output {
+            width: 100%;
+
+            .output__message {
+                margin: 0px 2rem;
+
+                label {
+                    padding-left: 10px;
+                    color: $main-color;
+                    font-size: 1.25em;
+                }
+
+                p {
+                    white-space: pre-wrap;
+                    overflow-wrap: break-word;
+                    max-width: 80%;
+                    margin: 5px;
+                    display: inline-block;
+                    color: $white;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-image: $vibrant-gradient;
+                    box-shadow: 3px 3px 10px rgba($vibrant-light, 0.25);
+                }
+            }
+
+            .forwarded-message {
+                display: flex;
+                flex-direction: row-reverse;
+
+                p {
+                    background-image: none;
+                    background-color: $messages-soft;
+                    box-shadow: -3px -3px 10px rgba($messages-soft, 0.25);
+
+                }
+            }
+        }
+
+        .chat-window__feedback {
+            color: $main-color;
+            font-style: italic;
+            font-size: 16px;
+            padding-left: 2rem;
+        }
+    }
+
+    .chat-input {
+        height: 120px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border-top: 0.5px solid $main-color-opaque;
+
+        .chat-input__message {
+            font-size: 16px;
+            width: 100%;
+            padding: 30px;
+            color: $main-color;
+            background: none;
+            border: none;
+            outline: none;
+            resize: none;
+
+            &::placeholder {
+                color: $main-color-opaque;
+                font-style: italic;
+            }
+        }
+
+        .chat-input__submit {
+            margin: 30px;
+            width: 100px;
+        }
+    }
+}

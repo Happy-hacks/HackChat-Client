@@ -1,0 +1,48 @@
+@import 'variables.scss';
+
+.login {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        font-size: 18px;
+        font-weight: normal;
+        text-align: center;
+        padding-top: 30px;
+        color: $main-color-opaque;
+    }
+}
+.login__form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input {
+        font-size: 1.5em;
+        margin-top: 25px;
+        border: none;
+        outline: none;
+
+        &::placeholder {
+            color: $main-color-opaque;
+            font-style: italic;
+        }
+    }
+
+    .login__handle,
+    .login__password {
+        color: $main-color;
+        text-align: center;
+        height: 60px;
+        background: none;
+        border-bottom: 0.5px solid $main-color-opaque;
+        width: 100%;
+    }
+
+    .login__submit {
+        width: 100px;
+    }
+}

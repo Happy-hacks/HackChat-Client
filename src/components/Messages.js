@@ -30,13 +30,13 @@ const Received = ({ handle, message }) => (
 		{handle && <label>{handle}</label>}
 		{handle && <br />}
 
-		<pre>{message}</pre>
+		<p>{message}</p>
 	</div>
 );
 
 const Forwarded = ({ message }) => (
 	<div className="output__message forwarded-message">
-		<pre>{message}</pre>
+		<p>{message}</p>
 	</div>
 );
 

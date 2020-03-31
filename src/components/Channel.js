@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../sass/Channel.scss';
 
 // libraries
 import { Redirect, useLocation } from 'react-router-dom';
