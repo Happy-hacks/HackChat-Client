@@ -1,0 +1,66 @@
+@import 'variables.scss';
+
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+    height: 100%;
+    margin: 10px;
+
+    .chat-window__output {
+        width: 100%;
+
+        .output__message {
+            margin: 0px 2rem;
+
+            label {
+                padding-left: 10px;
+                color: $main-color;
+                font-size: 1.25em;
+            }
+
+            pre {
+                font-family: $font-family;
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                max-width: 80%;
+                margin: 5px;
+                display: inline-block;
+                color: $white;
+                padding: 10px;
+                border-radius: 10px;
+                background-image: $vibrant-gradient;
+                box-shadow: 3px 3px 10px rgba($vibrant-light, 0.25);
+            }
+        }
+
+        .forwarded-message {
+            display: flex;
+            flex-direction: row-reverse;
+
+            pre {
+                background-image: none;
+                background-color: $messages-soft;
+                box-shadow: -3px -3px 10px rgba($messages-soft, 0.25);
+
+            }
+        }
+
+        .error-message {
+            pre {
+                background-image: none;
+                background-image: $error-gradient;
+                box-shadow: -3px -3px 10px rgba($error-light, 0.25);
+
+            }
+        }
+    }
+
+    .chat-window__feedback {
+        color: $main-color;
+        font-style: italic;
+        font-size: 16px;
+        padding-left: 2rem;
+    }
+}

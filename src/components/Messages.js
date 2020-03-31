@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from 'react';
+import '../sass/Messages.scss';
 
 const Messages = ({ content, feedback, socket }) => {
 	const messagesEndRef = useRef(null);
 
 	let previousHandle = '';
-	const messages = content.map(({ handle, message, id }, index) => {
+	const messages = content.map(({ handle, message, id, error }, index) => {
 		const showHandle = !(handle === previousHandle);
 		previousHandle = handle;
 
-		if (socket.id === id) return <Forwarded key={index} message={message} />;
+		if (error)
+			return <Received key={index} handle={showHandle ? handle : undefined} message={message} error={error} />;
+		if (socket && socket.id === id) return <Forwarded key={index} message={message} />;
 		else return <Received key={index} handle={showHandle ? handle : undefined} message={message} />;
 	});
 
@@ -25,18 +28,21 @@ const Messages = ({ content, feedback, socket }) => {
 	);
 };
 
-const Received = ({ handle, message }) => (
-	<div className="output__message received-message">
-		{handle && <label>{handle}</label>}
-		{handle && <br />}
+const Received = ({ handle, message, error }) => {
+	const className = error ? 'output__message error-message' : 'output__message received-message';
+	return (
+		<div className={className}>
+			{handle && <label>{handle}</label>}
+			{handle && <br />}
 
-		<p>{message}</p>
-	</div>
-);
+			<pre>{message}</pre>
+		</div>
+	);
+};
 
 const Forwarded = ({ message }) => (
 	<div className="output__message forwarded-message">
-		<p>{message}</p>
+		<pre>{message}</pre>
 	</div>
 );
 

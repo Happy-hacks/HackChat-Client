@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // components
 import Channel from './Channel';
-import LoginForm from './LoginForm';
+import LoginForm from './Login';
 
 const App = () => {
 	return (
