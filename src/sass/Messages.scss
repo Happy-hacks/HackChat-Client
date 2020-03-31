@@ -14,8 +14,9 @@
         .output__message {
             margin: 0px 2rem;
 
-            label {
-                padding-left: 10px;
+            h2 {
+                text-align: left;
+                padding: 10px 0px 0px 0px;
                 color: $main-color;
                 font-size: 1.25em;
             }

@@ -11,15 +11,11 @@ const Login = () => {
 	const [messages, setMessages] = useState([{ handle: 'HackChat', message: 'Welcome HackChat...', id: 'HackChat' }]);
 	const [feedback, setFeedback] = useState('');
 
-	const handleError = () => {
-		const message = {
-			handle: 'Authentication Error',
-			message: 'Error in Username or Password',
-			error: 'authentication-error'
-		};
-		setMessages((messages) => [...messages, message]);
+	const handleError = (error) => {
+		setMessages((messages) => [...messages, error]);
 	};
 
+	// should be and separated function
 	useEffect(() => {
 		setTimeout(() => {
 			setFeedback('HackChat');
@@ -58,9 +54,23 @@ const LoginForm = ({ handleError }) => {
 	const onSubmit = (event) => {
 		event.preventDefault();
 
+		// error objects should be inside a meta object
 		// validate username and password
-		if (handle === 'error') handleError();
-		else setAuthenticated(true);
+		if (handle === 'error') {
+			const error = {
+				error: 'Authentication Error',
+				message: 'No access for this Username and Password'
+			};
+
+			handleError(error);
+		} else if (!handle || !password) {
+			const error = {
+				error: 'Input Error',
+				message: 'Username and Password are required'
+			};
+
+			handleError(error);
+		} else setAuthenticated(true);
 	};
 
 	if (authenticated) return <Redirect to={{ pathname: '/', state: { authenticated, handle } }} />;
@@ -71,7 +81,6 @@ const LoginForm = ({ handleError }) => {
 				className="login__handle"
 				placeholder="handle"
 				name="handle"
-				required
 				autoFocus
 				onChange={(event) => setValues(event)}
 			/>
@@ -81,7 +90,6 @@ const LoginForm = ({ handleError }) => {
 				placeholder="password"
 				type="password"
 				name="password"
-				required
 				onChange={(event) => setValues(event)}
 				value={password}
 			/>

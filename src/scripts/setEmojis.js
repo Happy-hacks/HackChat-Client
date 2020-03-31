@@ -21,7 +21,7 @@ const emojis = {
 	':L': { code: ':L', icon: '🤔', name: '...' },
 	':P': { code: ':P', icon: '😛', name: '...' },
 	';P': { code: ';P', icon: '😜', name: '...' },
-	xP: { code: ':P', icon: '😝', name: '...' },
+	xP: { code: 'xP', icon: '😝', name: '...' },
 	'x=': { code: 'x\\=', icon: '🤮', name: '...' },
 
 	// gestures

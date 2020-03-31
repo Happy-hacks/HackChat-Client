@@ -6,13 +6,12 @@ const Messages = ({ content, feedback, socket }) => {
 
 	let previousHandle = '';
 	const messages = content.map(({ handle, message, id, error }, index) => {
-		const showHandle = !(handle === previousHandle);
-		previousHandle = handle;
+		const showLabel = !(handle === previousHandle || error === previousHandle);
+		previousHandle = error || handle;
 
-		if (error)
-			return <Received key={index} handle={showHandle ? handle : undefined} message={message} error={error} />;
+		if (error) return <Error key={index} message={message} error={showLabel ? error : undefined} />;
 		if (socket && socket.id === id) return <Forwarded key={index} message={message} />;
-		else return <Received key={index} handle={showHandle ? handle : undefined} message={message} />;
+		else return <Received key={index} handle={showLabel ? handle : undefined} message={message} />;
 	});
 
 	useEffect(() => {
@@ -28,20 +27,22 @@ const Messages = ({ content, feedback, socket }) => {
 	);
 };
 
-const Received = ({ handle, message, error }) => {
-	const className = error ? 'output__message error-message' : 'output__message received-message';
-	return (
-		<div className={className}>
-			{handle && <label>{handle}</label>}
-			{handle && <br />}
-
-			<pre>{message}</pre>
-		</div>
-	);
-};
+const Received = ({ handle, message }) => (
+	<div className="output__message received-message">
+		{handle && <h2>{handle}</h2>}
+		<pre>{message}</pre>
+	</div>
+);
 
 const Forwarded = ({ message }) => (
 	<div className="output__message forwarded-message">
+		<pre>{message}</pre>
+	</div>
+);
+
+const Error = ({ error, message }) => (
+	<div className="output__message error-message">
+		{error && <h2>{error}</h2>}
 		<pre>{message}</pre>
 	</div>
 );

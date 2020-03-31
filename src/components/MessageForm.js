@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // scripts
-import transformEmoji from '../scripts/transformEmoji';
+import setEmojis from '../scripts/setEmojis';
 
 const MessageForm = ({ socket }) => {
 	const [message, setMessage] = useState('');
@@ -12,14 +12,14 @@ const MessageForm = ({ socket }) => {
 
 	const onSubmit = (event) => {
 		event.preventDefault();
-		const transformedMessage = transformEmoji(message);
+		const transformedMessage = setEmojis(message);
 		if (message) socket.emit('chat', { message: transformedMessage, handle, id: socket.id });
 		setMessage('');
 	};
 
 	const onTyping = (event) => {
+		setMessage(setEmojis(message));
 		const keyCode = window.event.keyCode;
-		setMessage(transformEmoji(message));
 
 		if (keyCode === 13 && event.shiftKey) setMessage(message);
 		else if (keyCode === 13) return onSubmit(event);
