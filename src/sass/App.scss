@@ -3,6 +3,10 @@
 .app {
     background-color: $base-color;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
 }
 
 @media only screen and (min-width: 600px) {

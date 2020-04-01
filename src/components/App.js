@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../sass/App.scss';
 
 // libraries
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // components
+import Navigation from './Navigation';
 import Channel from './Channel';
 import LoginForm from './Login';
+import Menu from './Menu';
 
 const App = () => {
+	const [showMenu, setShowMenu] = useState(false);
+
 	return (
 		<div className="app">
+			<Navigation setShowMenu={setShowMenu} />
+			{showMenu && <Menu setShowMenu={setShowMenu} />}
 			<Router>
 				<Switch>
 					<Route exact path="/" children={<Channel />} />
