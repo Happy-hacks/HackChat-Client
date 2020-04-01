@@ -8,6 +8,7 @@ import io from 'socket.io-client';
 // components
 import MessageForm from './MessageForm';
 import Messages from './Messages';
+import MessageToolbar from './MessageToolbar';
 
 // should be used as hook, so it want try to connect before this component
 import env from '../scripts/environment';
@@ -40,7 +41,8 @@ const Channel = () => {
 	return (
 		<div className="channel">
 			<h2>main channel</h2>
-			<Messages content={messages} feedback={feedback} socket={socket} />
+			<Messages content={messages} socket={socket} />
+			<MessageToolbar feedback={feedback} />
 			<MessageForm socket={socket} />
 		</div>
 	);

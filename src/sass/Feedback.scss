@@ -1,0 +1,12 @@
+@import 'variables.scss';
+
+.message-toolbar__feedback {
+    color: $main-color;
+    font-style: italic;
+    font-size: 16px;
+    padding: 0.8rem;
+    padding-left: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: none;
+}

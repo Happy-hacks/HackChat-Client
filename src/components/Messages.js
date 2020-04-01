@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import '../sass/Messages.scss';
 
-const Messages = ({ content, feedback, socket }) => {
+const Messages = ({ content, socket }) => {
 	const messagesEndRef = useRef(null);
 
 	let previousHandle = '';
@@ -22,7 +22,6 @@ const Messages = ({ content, feedback, socket }) => {
 		<div className="chat-window">
 			<div className="chat-window__output">{messages}</div>
 			<div ref={messagesEndRef} />
-			{feedback && <Feedback handle={feedback} />}
 		</div>
 	);
 };
@@ -44,14 +43,6 @@ const Error = ({ error, message }) => (
 	<div className="output__message error-message">
 		{error && <h2>{error}</h2>}
 		<pre>{message}</pre>
-	</div>
-);
-
-const Feedback = ({ handle }) => (
-	<div className="chat-window__feedback">
-		<p>
-			<em> {handle} is typing a message... </em>
-		</p>
 	</div>
 );
 
