@@ -1,4 +1,5 @@
 import React from 'react';
+import '../sass/EmojiSelector.scss';
 
 // scripts
 import { emojis } from '../scripts/setEmojis';
@@ -9,14 +10,14 @@ const EmojiSelector = ({ message, setMessage, setShowEmojis }) => {
 	};
 
 	return (
-		<div>
+		<div className="message__emoji-view">
 			<button onClick={() => setShowEmojis(false)}>close</button>
-			<div>
+			<div className="emoji-view__emoji-selector">
 				{Object.keys(emojis).map((key) => (
-					<span key={key} onClick={() => appendEmoji(emojis[key].icon)}>
-						<span>{emojis[key].icon}</span>
-						<span>{key}</span>
-					</span>
+					<div className="emoji-selector__emoji" key={key} onClick={() => appendEmoji(emojis[key].icon)}>
+						<span className="emoji__icon">{emojis[key].icon}</span>
+						<span className="emoji__code">{key}</span>
+					</div>
 				))}
 			</div>
 		</div>

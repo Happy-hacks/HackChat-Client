@@ -9,35 +9,33 @@ export default (message) => {
 
 const emojis = {
 	// smileys
-	':)': { code: ':\\)', icon: '🙂', name: 'smiley' },
-	':D': { code: ':D', icon: '😃', name: '...' },
-	xD: { code: 'xD', icon: '😆', name: '...' },
-	':(': { code: ':\\(', icon: '🙁', name: '...' },
-	';(': { code: ';\\(', icon: '😉', name: '...' },
-	';I': { code: ';I', icon: '🤨', name: '...' },
-	':I': { code: ':I', icon: '😐', name: '...' },
-	':o': { code: ':o', icon: '😮', name: '...' },
-	':O': { code: ':O', icon: '😱', name: '...' },
-	':L': { code: ':L', icon: '🤔', name: '...' },
-	':P': { code: ':P', icon: '😛', name: '...' },
-	';P': { code: ';P', icon: '😜', name: '...' },
-	xP: { code: 'xP', icon: '😝', name: '...' },
-	'x=': { code: 'x\\=', icon: '🤮', name: '...' },
+	':)': { code: ':\\)', icon: '🙂', category: 'smiley' },
+	':D': { code: ':D', icon: '😃', category: 'smiley' },
+	xD: { code: 'xD', icon: '😆', category: 'smiley' },
+	':(': { code: ':\\(', icon: '🙁', category: 'smiley' },
+	';(': { code: ';\\(', icon: '😉', category: 'smiley' },
+	';I': { code: ';I', icon: '🤨', category: 'smiley' },
+	':I': { code: ':I', icon: '😐', category: 'smiley' },
+	':o': { code: ':o', icon: '😮', category: 'smiley' },
+	':O': { code: ':O', icon: '😱', category: 'smiley' },
+	':L': { code: ':L', icon: '🤔', category: 'smiley' },
+	':P': { code: ':P', icon: '😛', category: 'smiley' },
+	';P': { code: ';P', icon: '😜', category: 'smiley' },
+	xP: { code: 'xP', icon: '😝', category: 'smiley' },
+	'x=': { code: 'x\\=', icon: '🤮', category: 'smiley' },
 
 	// gestures
-	'\\like': { code: '\\like', icon: '👍', name: '...' },
-	'\\dislike': { code: '\\dislike', icon: '👎', name: '...' },
-	'\\fuck': { code: '\\fuck', icon: '🖕', name: '...' },
-	'\\rock': { code: '\\rock', icon: '🤘', name: '...' },
+	'\\like': { code: '\\like', icon: '👍', category: 'gestures' },
+	'\\dislike': { code: '\\dislike', icon: '👎', category: 'gestures' },
+	'\\fuck': { code: '\\fuck', icon: '🖕', category: 'gestures' },
+	'\\rock': { code: '\\rock', icon: '🤘', category: 'gestures' },
 
 	// objects
-	'\\ghost': { code: '\\ghost', icon: '👻', name: '...' },
-	'\\alien': { code: '\\alien', icon: '👽', name: '...' },
-	'\\shit': { code: '\\shit', icon: '💩', name: '...' },
-	'\\snowman': { code: '\\snowman', icon: '☃️', name: '...' },
-
-	// animal
-	'\\quack': { code: '\\quack', icon: '🦆', name: '...' }
+	'\\ghost': { code: '\\ghost', icon: '👻', category: 'objects' },
+	'\\alien': { code: '\\alien', icon: '👽', category: 'objects' },
+	'\\shit': { code: '\\shit', icon: '💩', category: 'objects' },
+	'\\snowman': { code: '\\snowman', icon: '☃️', category: 'objects' },
+	'\\quack': { code: '\\quack', icon: '🦆', category: '...' }
 };
 
 // resource:: https://getemoji.com/

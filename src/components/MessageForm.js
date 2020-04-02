@@ -41,11 +41,9 @@ const MessageForm = ({ socket, showEmojis, setShowEmojis }) => {
 					value={message}
 					autoFocus
 				/>
-				{showEmojis && (
-					<EmojiSelector message={message} setMessage={setMessage} setShowEmojis={setShowEmojis} />
-				)}
+				<input className="chat-input__submit" type="submit" value="send" onClick={(event) => onSubmit(event)} />
 			</div>
-			<input className="chat-input__submit" type="submit" value="send" onClick={(event) => onSubmit(event)} />
+			{showEmojis && <EmojiSelector message={message} setMessage={setMessage} setShowEmojis={setShowEmojis} />}
 		</form>
 	);
 };
