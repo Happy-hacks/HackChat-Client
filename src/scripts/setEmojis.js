@@ -41,3 +41,5 @@ const emojis = {
 };
 
 // resource:: https://getemoji.com/
+
+export { emojis };

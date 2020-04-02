@@ -17,6 +17,7 @@ const socket = io(env.SOCKET_HOST);
 const Channel = () => {
 	const [messages, setMessages] = useState([]);
 	const [feedback, setFeedback] = useState('');
+	const [showEmojis, setShowEmojis] = useState(false);
 
 	useEffect(() => {
 		socket.on('chat', (message) => setMessages((messages) => [...messages, message]));
@@ -42,8 +43,8 @@ const Channel = () => {
 		<div className="channel">
 			<h2>main channel</h2>
 			<Messages content={messages} socket={socket} />
-			<MessageToolbar feedback={feedback} />
-			<MessageForm socket={socket} />
+			<MessageToolbar feedback={feedback} setShowEmojis={setShowEmojis} />
+			<MessageForm socket={socket} showEmojis={showEmojis} setShowEmojis={setShowEmojis} />
 		</div>
 	);
 };

@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 // libraries
 import { useLocation } from 'react-router-dom';
 
+// components
+import EmojiSelector from './EmojiSelector';
+
 // scripts
 import setEmojis from '../scripts/setEmojis';
 
-const MessageForm = ({ socket }) => {
+const MessageForm = ({ socket, showEmojis, setShowEmojis }) => {
 	const [message, setMessage] = useState('');
 	const handle = useLocation().state.handle;
 
@@ -28,15 +31,20 @@ const MessageForm = ({ socket }) => {
 
 	return (
 		<form className="chat-input">
-			<textarea
-				className="chat-input__message"
-				placeholder="message... shift + enter for newline"
-				name="message"
-				onChange={(event) => setMessage(event.target.value)}
-				onKeyPress={(event) => onTyping(event)}
-				value={message}
-				autoFocus
-			/>
+			<div className="chat-input__message">
+				<textarea
+					className="chat-input__message"
+					placeholder="message... shift + enter for newline"
+					name="message"
+					onChange={(event) => setMessage(event.target.value)}
+					onKeyPress={(event) => onTyping(event)}
+					value={message}
+					autoFocus
+				/>
+				{showEmojis && (
+					<EmojiSelector message={message} setMessage={setMessage} setShowEmojis={setShowEmojis} />
+				)}
+			</div>
 			<input className="chat-input__submit" type="submit" value="send" onClick={(event) => onSubmit(event)} />
 		</form>
 	);
