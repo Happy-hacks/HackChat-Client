@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../sass/Navigation.scss';
 
 // libraries
 import { useLocation } from 'react-router-dom';
 
-const Navigation = ({ setShowMenu }) => {
-	const route = useLocation().pathname;
+//components
+import Menu from './Menu';
 
-	if (route === '/login') {
+const Navigation = () => {
+	const [showMenu, setShowMenu] = useState(false);
+
+	if (useLocation().pathname === '/login') {
 		return <div className="app__navigation" />;
 	}
 
 	const redirectBack = () => console.log('redirect back');
+
+	if (showMenu) return <Menu setShowMenu={setShowMenu} />;
 
 	return (
 		<div className="app__navigation">

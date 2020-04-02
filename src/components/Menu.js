@@ -1,28 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../sass/Menu.scss';
 
 // libraries
-import { Redirect, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Menu = ({ setShowMenu }) => {
-	const [redirection, setRedirection] = useState('');
+// assets
+//import test from '../assets/x.png';
 
-	const redirect = async (route) => {
-		setRedirection(route);
-	};
-
-	// needs better authentication configuration
-	if (redirection) {
-		return <Redirect to={{ pathname: redirection, state: { authenticated: false } }} />;
-	}
-
-	return (
-		<div className="navigation__menu">
+const Menu = ({ setShowMenu }) => (
+	<div className="navigation__menu">
+		<div className="menu__navigation">
 			<button onClick={() => setShowMenu(false)}>Hide</button>
-			<h2>Menu</h2>
-			<button onClick={() => redirect('/preferences')}>Preferences</button>
-			<button onClick={() => redirect('/login')}>Sign out</button>
 		</div>
-	);
-};
+
+		<h2>menu</h2>
+		<div className="menu__links">
+			<Link to={{ pathname: '/', state: { authenticated: true } }} onClick={() => setShowMenu(false)}>
+				<LinkLabel title="Chat" icon={undefined} />
+			</Link>
+			<Link to={'/preferences'} onClick={() => setShowMenu(false)}>
+				<LinkLabel title="Preferences" icon={undefined} />
+			</Link>
+			<Link to={'/login'} onClick={() => setShowMenu(false)}>
+				<LinkLabel title="Sign out" icon={undefined} />
+			</Link>
+		</div>
+	</div>
+);
+
+const LinkLabel = ({ title, icon }) => (
+	<div className="menu__link">
+		<label>{title}</label>
+		<img src={icon} alt={`${title} icon`} />
+	</div>
+);
+
 export default Menu;

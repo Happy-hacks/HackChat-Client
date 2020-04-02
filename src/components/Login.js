@@ -22,12 +22,16 @@ const Login = () => {
 		const feedbackDelay = MESSAGES[messageIndex].feedbackDelay;
 		const responseDelay = MESSAGES[messageIndex].responseDelay;
 
-		setTimeout(() => {
+		// defining the intervals
+		let feedbackInterval;
+		let responseInterval;
+
+		feedbackInterval = setTimeout(() => {
 			// sending feedback
 			setFeedback('HackChat');
 
 			// sending message
-			setTimeout(() => {
+			responseInterval = setTimeout(() => {
 				setMessages((messages) => [...messages, { message, handle: 'HackChat', id: 'HackChat' }]);
 				setFeedback('');
 			}, responseDelay);
@@ -35,10 +39,18 @@ const Login = () => {
 			// iterate to next message
 			setMessageIndex(messageIndex === MESSAGES.length - 1 ? 0 : messageIndex + 1);
 		}, feedbackDelay);
+
+		return [feedbackInterval, responseInterval];
 	};
 
 	useEffect(() => {
-		messageEffect();
+		const [feedbackInterval, responseInterval] = messageEffect();
+
+		// stopping the intervals
+		return () => {
+			clearInterval(feedbackInterval);
+			clearInterval(responseInterval);
+		};
 	}, [messageIndex]);
 
 	return (

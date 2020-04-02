@@ -3,7 +3,7 @@ import '../sass/Preferences.scss';
 
 const Preferences = () => (
 	<div className="app__preferences">
-		<h2>Preferences</h2>
+		<h2>preferences</h2>
 	</div>
 );
 
