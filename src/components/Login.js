@@ -7,29 +7,39 @@ import Feedback from './Feedback';
 import LoginForm from './LoginForm';
 
 const Login = () => {
-	const [messages, setMessages] = useState([{ handle: 'HackChat', message: 'Welcome HackChat...', id: 'HackChat' }]);
 	const [feedback, setFeedback] = useState('');
+	const [messageIndex, setMessageIndex] = useState(0);
+	const [messages, setMessages] = useState([
+		{ handle: 'HackChat', message: 'Welcome to HackChat...', id: 'HackChat' }
+	]);
 
 	const handleError = (error) => {
 		setMessages((messages) => [...messages, error]);
 	};
 
-	// should be and separated function
-	useEffect(() => {
+	const messageEffect = () => {
+		const message = MESSAGES[messageIndex].message;
+		const feedbackDelay = MESSAGES[messageIndex].feedbackDelay;
+		const responseDelay = MESSAGES[messageIndex].responseDelay;
+
 		setTimeout(() => {
+			// sending feedback
 			setFeedback('HackChat');
 
+			// sending message
 			setTimeout(() => {
-				const message = {
-					handle: 'HackChat',
-					message: 'Type our credentials to access the features',
-					id: 'HackChat'
-				};
-				setMessages((messages) => [...messages, message]);
+				setMessages((messages) => [...messages, { message, handle: 'HackChat', id: 'HackChat' }]);
 				setFeedback('');
-			}, 2000);
-		}, 3000);
-	}, []);
+			}, responseDelay);
+
+			// iterate to next message
+			setMessageIndex(messageIndex === MESSAGES.length - 1 ? 0 : messageIndex + 1);
+		}, feedbackDelay);
+	};
+
+	useEffect(() => {
+		messageEffect();
+	}, [messageIndex]);
 
 	return (
 		<div className="login">
@@ -40,5 +50,29 @@ const Login = () => {
 		</div>
 	);
 };
+
+const MESSAGES = [
+	{
+		message: `Type our credentials and access the features`,
+		feedbackDelay: 15000,
+		responseDelay: 3000
+	},
+	{
+		message: `You see those input felids?...
+	Type your username and password instead of waiting😃`,
+		feedbackDelay: 15000,
+		responseDelay: 3000
+	},
+	{
+		message: `What can you share and yet keep at the same time?🤔`,
+		feedbackDelay: 15000,
+		responseDelay: 3000
+	},
+	{
+		message: `...A STD.😐`,
+		feedbackDelay: 4000,
+		responseDelay: 2000
+	}
+];
 
 export default Login;

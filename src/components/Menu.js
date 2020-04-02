@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../sass/Menu.scss';
 
+// libraries
+import { Redirect, useLocation } from 'react-router-dom';
+
 const Menu = ({ setShowMenu }) => {
-	const openPreferences = console.log('Preferences is pressed');
-	const signOut = console.log('You logged out');
+	const [redirection, setRedirection] = useState('');
+
+	const redirect = async (route) => {
+		setRedirection(route);
+	};
+
+	// needs better authentication configuration
+	if (redirection) {
+		return <Redirect to={{ pathname: redirection, state: { authenticated: false } }} />;
+	}
 
 	return (
 		<div className="navigation__menu">
 			<button onClick={() => setShowMenu(false)}>Hide</button>
-			<span>Preferences</span>
-			<span>Sign out</span>
+			<h2>Menu</h2>
+			<button onClick={() => redirect('/preferences')}>Preferences</button>
+			<button onClick={() => redirect('/login')}>Sign out</button>
 		</div>
 	);
 };

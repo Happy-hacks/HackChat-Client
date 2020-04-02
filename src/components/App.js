@@ -5,24 +5,24 @@ import '../sass/App.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // components
-import Navigation from './Navigation';
-import Channel from './Channel';
-import LoginForm from './Login';
 import Menu from './Menu';
+import Navigation from './Navigation';
+import Login from './Login';
+import Channel from './Channel';
+import Preferences from './Preferences';
 
 const App = () => {
 	const [showMenu, setShowMenu] = useState(false);
 
 	return (
 		<div className="app">
-			<Navigation setShowMenu={setShowMenu} />
-			{showMenu && <Menu setShowMenu={setShowMenu} />}
 			<Router>
+				{showMenu && <Menu setShowMenu={setShowMenu} />}
+				<Navigation setShowMenu={setShowMenu} />
 				<Switch>
 					<Route exact path="/" children={<Channel />} />
-					<Route path="/login" children={<LoginForm />} />
-					<Route path="/channels" children={<h2>channels</h2>} />
-					<Route path="/settings" children={<h2>settings</h2>} />
+					<Route path="/login" children={<Login />} />
+					<Route path="/preferences" children={<Preferences />} />
 					<Route path="*" children={<h2>error</h2>} />
 				</Switch>
 			</Router>

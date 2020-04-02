@@ -1,16 +1,12 @@
 @import 'variables.scss';
 
-.navigation__menu {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: $base-color;
-
+.app__preferences {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    h2 {
+    height: 100%;
+h2 {
         @include title();
     }
 }

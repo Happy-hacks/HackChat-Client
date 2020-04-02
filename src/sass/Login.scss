@@ -7,11 +7,7 @@
     justify-content: space-between;
 
     h2 {
-        font-size: 18px;
-        font-weight: normal;
-        text-align: center;
-        padding-top: 30px;
-        color: $main-color-opaque;
+        @include title();
     }
 
     .login__form {

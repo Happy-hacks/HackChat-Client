@@ -13,26 +13,23 @@ const LoginForm = ({ handleError }) => {
 		else if (event.target.name === 'password') setPassword(event.target.value);
 	};
 
+	const ERROR = {
+		authentication: { error: 'Authentication Error', message: 'No access for this Username and Password' },
+		input: { error: 'Input Error', message: 'Username and Password are required' },
+		connection: { error: 'Connection Error', message: 'Cant connect to Servers' }
+	};
+
+	// needs refracturing
 	const onSubmit = (event) => {
 		event.preventDefault();
 
-		// error objects should be inside a meta object
-		// validate username and password
-		if (handle === 'error') {
-			const error = {
-				error: 'Authentication Error',
-				message: 'No access for this Username and Password'
-			};
-
-			handleError(error);
-		} else if (!handle || !password) {
-			const error = {
-				error: 'Input Error',
-				message: 'Username and Password are required'
-			};
-
-			handleError(error);
-		} else setAuthenticated(true);
+		if (handle && !password) event.target.form.password.focus();
+		else if (!handle || !password) handleError(ERROR.input);
+		else if (handle === 'error') handleError(ERROR.authentication);
+		else {
+			setAuthenticated(true);
+			return <Redirect to={{ pathname: '/', state: { authenticated: true, handle } }} />;
+		}
 	};
 
 	if (authenticated) return <Redirect to={{ pathname: '/', state: { authenticated, handle } }} />;

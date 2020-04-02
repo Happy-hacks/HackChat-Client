@@ -5,14 +5,15 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: auto;
-    height: 100%;
     margin: 10px;
+    height: 1fr;
 
     .chat-window__output {
         width: 100%;
 
         .output__message {
             margin: 0px 2rem;
+            flex: 1;
 
             h2 {
                 text-align: left;
