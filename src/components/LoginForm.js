@@ -30,8 +30,9 @@ const LoginForm = ({ handleError }) => {
 	const onSubmit = async (event) => {
 		event.preventDefault();
 
-		if (!handle || !password) return handleError(ERROR.input);
-		else if (handle && !password) return event.target.form.password.focus();
+		if (!handle || !password) handleError(ERROR.input);
+
+		if (handle && !password) return event.target.form.password.focus();
 		else if (!handle && password) return event.target.form.handle.focus();
 
 		const options = (body) => ({

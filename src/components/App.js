@@ -17,6 +17,7 @@ const App = () => {
 	const [handle, setHandle] = useState('');
 	const [menu, setMenu] = useState(false);
 	const [socket, setSocket] = useState(null);
+	const [history, setHistory] = useState([]);
 	const [theme, setTheme] = useState({ palette: 'dark', name: 'user-dark' });
 
 	const systemTheme = () => {
@@ -34,7 +35,11 @@ const App = () => {
 	});
 
 	const signIn = (handle) => {
-		setSocket(io(env.SOCKET_HOST));
+		setSocket(
+			io(env.SOCKET_HOST, {
+				query: { handle }
+			})
+		);
 		setHandle(handle);
 		setAuthentication(true);
 	};
@@ -49,9 +54,19 @@ const App = () => {
 	const showMenu = () => setMenu(true);
 	const hideMenu = () => setMenu(false);
 
+	const addToHistory = (route) => {
+		setHistory((history) => [...history, route]);
+	};
+
+	const getPreviousRoute = () => {
+		return history.pop();
+	};
+
 	const appContext = {
 		auth: { authenticated, signIn, signOut, handle },
 		config: { theme, handleTheme, menu, showMenu, hideMenu },
+		location: { history, addToHistory, getPreviousRoute },
+		user: { handle },
 		socket
 	};
 
