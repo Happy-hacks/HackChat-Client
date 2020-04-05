@@ -51,7 +51,7 @@ const Login = () => {
 			clearInterval(feedbackInterval);
 			clearInterval(responseInterval);
 		};
-	}, [messageIndex]);
+	});
 
 	return (
 		<div className="login">

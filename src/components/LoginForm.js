@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // libraries
 import { Redirect } from 'react-router-dom';
 
+// context
+import { AppContext } from './App';
+
 const LoginForm = ({ handleError }) => {
 	const [handle, setHandle] = useState('');
 	const [password, setPassword] = useState('');
-	const [authenticated, setAuthenticated] = useState(false);
+
+	const context = useContext(AppContext);
 
 	const setValues = (event) => {
 		if (event.target.name === 'handle') setHandle(event.target.value);
@@ -26,13 +30,10 @@ const LoginForm = ({ handleError }) => {
 		if (handle && !password) event.target.form.password.focus();
 		else if (!handle || !password) handleError(ERROR.input);
 		else if (handle === 'error') handleError(ERROR.authentication);
-		else {
-			setAuthenticated(true);
-			return <Redirect to={{ pathname: '/', state: { authenticated: true, handle } }} />;
-		}
+		else context.auth.signIn(handle);
 	};
 
-	if (authenticated) return <Redirect to={{ pathname: '/', state: { authenticated, handle } }} />;
+	if (context.auth.authenticated) return <Redirect to="/" />;
 
 	return (
 		<form className="login__form">

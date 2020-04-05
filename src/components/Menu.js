@@ -1,32 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../sass/Menu.scss';
 
 // libraries
 import { Link } from 'react-router-dom';
 
+// context
+import { AppContext } from './App';
+
 // assets
 //import test from '../assets/x.png';
 
-const Menu = ({ setShowMenu }) => (
-	<div className="navigation__menu">
-		<div className="menu__navigation">
-			<button onClick={() => setShowMenu(false)}>Hide</button>
-		</div>
+const Menu = () => {
+	const context = useContext(AppContext);
 
-		<h2>menu</h2>
-		<div className="menu__links">
-			<Link to={{ pathname: '/', state: { authenticated: true } }} onClick={() => setShowMenu(false)}>
-				<LinkLabel title="Chat" icon={undefined} />
-			</Link>
-			<Link to={'/preferences'} onClick={() => setShowMenu(false)}>
-				<LinkLabel title="Preferences" icon={undefined} />
-			</Link>
-			<Link to={'/login'} onClick={() => setShowMenu(false)}>
-				<LinkLabel title="Sign out" icon={undefined} />
-			</Link>
+	return (
+		<div className="navigation__menu">
+			<div className="menu__navigation">
+				<button onClick={() => context.config.hideMenu()}>Hide</button>
+			</div>
+
+			<h2>menu</h2>
+			<div className="menu__links">
+				<Link to={{ pathname: '/', state: { authenticated: true } }} onClick={() => context.config.hideMenu()}>
+					<LinkLabel title="Chat" icon={undefined} />
+				</Link>
+				<Link to={'/preferences'} onClick={() => context.config.hideMenu()}>
+					<LinkLabel title="Preferences" icon={undefined} />
+				</Link>
+				<Link to={'/login'} onClick={() => context.auth.signOut()}>
+					<LinkLabel title="Sign out" icon={undefined} />
+				</Link>
+			</div>
 		</div>
-	</div>
-);
+	);
+};
 
 const LinkLabel = ({ title, icon }) => (
 	<div className="menu__link">

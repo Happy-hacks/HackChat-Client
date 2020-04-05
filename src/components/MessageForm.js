@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
-
-// libraries
-import { useLocation } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
 
 // components
 import EmojiSelector from './EmojiSelector';
 
+// context
+import { AppContext } from './App';
+
 // scripts
 import setEmojis from '../scripts/setEmojis';
 
-const MessageForm = ({ socket, showEmojis, setShowEmojis }) => {
+const MessageForm = ({ showEmojis }) => {
 	const [message, setMessage] = useState('');
-	const handle = useLocation().state.handle;
+	const context = useContext(AppContext);
 
 	const onSubmit = (event) => {
 		event.preventDefault();
+		if (!message) return;
+
 		const transformedMessage = setEmojis(message);
-		if (message) socket.emit('chat', { message: transformedMessage, handle, id: socket.id });
+		context.socket.emit('chat', {
+			message: transformedMessage,
+			handle: context.auth.handle,
+			id: context.socket.id
+		});
 		setMessage('');
 	};
 
@@ -26,7 +32,11 @@ const MessageForm = ({ socket, showEmojis, setShowEmojis }) => {
 
 		if (keyCode === 13 && event.shiftKey) setMessage(message);
 		else if (keyCode === 13) return onSubmit(event);
-		socket.emit('typing', handle);
+		context.socket.emit('typing', context.auth.handle);
+	};
+
+	const appendEmoji = (emoji) => {
+		setMessage((message) => message + emoji);
 	};
 
 	return (
@@ -43,7 +53,7 @@ const MessageForm = ({ socket, showEmojis, setShowEmojis }) => {
 				/>
 				<input className="chat-input__submit" type="submit" value="send" onClick={(event) => onSubmit(event)} />
 			</div>
-			{showEmojis && <EmojiSelector message={message} setMessage={setMessage} setShowEmojis={setShowEmojis} />}
+			{showEmojis && <EmojiSelector appendEmoji={appendEmoji} />}
 		</form>
 	);
 };

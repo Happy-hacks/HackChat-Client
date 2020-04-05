@@ -1,50 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../sass/Channel.scss';
-
-// libraries
-import { Redirect, useLocation } from 'react-router-dom';
-import io from 'socket.io-client';
 
 // components
 import MessageForm from './MessageForm';
 import Messages from './Messages';
 import MessageToolbar from './MessageToolbar';
 
-// should be used as hook, so it want try to connect before this component
-import env from '../scripts/environment';
-const socket = io(env.SOCKET_HOST);
+// context
+import { AppContext } from './App';
 
 const Channel = () => {
 	const [messages, setMessages] = useState([]);
 	const [feedback, setFeedback] = useState('');
 	const [showEmojis, setShowEmojis] = useState(false);
 
-	useEffect(() => {
-		socket.on('chat', (message) => setMessages((messages) => [...messages, message]));
-	}, []);
+	const context = useContext(AppContext);
 
 	useEffect(() => {
-		socket.on('typing', (data) => {
+		context.socket.on('chat', (message) => setMessages((messages) => [...messages, message]));
+		return () => context.socket.off('chat', console.log('stopping chat'));
+	}, [context.socket]);
+
+	useEffect(() => {
+		context.socket.on('typing', (data) => {
 			setFeedback(data);
 
 			setTimeout(() => {
 				setFeedback(undefined);
 			}, 1000);
 		});
-	}, []);
+	}, [context.socket]);
 
-	try {
-		if (!useLocation().state.authenticated) return <Redirect to="/login" />;
-	} catch {
-		return <Redirect to="/login" />;
-	}
+	const toggleEmojis = () => setShowEmojis((state) => !state);
+
+	if (!context.socket) return <h2>loading...</h2>;
 
 	return (
 		<div className="channel">
 			<h2>main channel</h2>
-			<Messages content={messages} socket={socket} />
-			<MessageToolbar feedback={feedback} setShowEmojis={setShowEmojis} />
-			<MessageForm socket={socket} showEmojis={showEmojis} setShowEmojis={setShowEmojis} />
+			<Messages content={messages} socketId={context.socket.id} />
+			<MessageToolbar feedback={feedback} toggleEmojis={toggleEmojis} />
+			<MessageForm showEmojis={showEmojis} />
 		</div>
 	);
 };

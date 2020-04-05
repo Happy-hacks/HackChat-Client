@@ -1,16 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 import '../sass/Messages.scss';
 
-const Messages = ({ content, socket }) => {
+const Messages = ({ content, socketId }) => {
 	const messagesEndRef = useRef(null);
 
 	let previousHandle = '';
+
 	const messages = content.map(({ handle, message, id, error }, index) => {
 		const showLabel = !(handle === previousHandle || error === previousHandle);
 		previousHandle = error || handle;
 
 		if (error) return <Error key={index} message={message} error={showLabel ? error : undefined} />;
-		if (socket && socket.id === id) return <Forwarded key={index} message={message} />;
+		if (socketId === id) return <Forwarded key={index} message={message} />;
 		else return <Received key={index} handle={showLabel ? handle : undefined} message={message} />;
 	});
 
