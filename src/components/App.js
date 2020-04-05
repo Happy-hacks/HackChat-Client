@@ -42,7 +42,7 @@ const App = () => {
 	const signOut = () => {
 		setSocket((socket) => socket.disconnect());
 		setMenu(false);
-		setHandle('');
+		setHandle(null);
 		setAuthentication(false);
 	};
 

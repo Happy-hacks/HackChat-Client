@@ -24,7 +24,7 @@ const Navigation = () => {
 	return (
 		<div className="app__navigation">
 			<button onClick={() => redirectBack()}>back</button>
-			<MenuBtn showMenu={context.config.showMenu()} />
+			<MenuBtn showMenu={() => context.config.showMenu()} />
 		</div>
 	);
 };
