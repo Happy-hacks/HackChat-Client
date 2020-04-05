@@ -1,7 +1,6 @@
 @import 'variables.scss';
 
 .app {
-    background-color: $base-color;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -9,15 +8,30 @@
     position: relative;
 }
 
+.theme-dark {
+    background-color: $base-color;
+}
+
+.theme-light {
+    background-color: white;
+}
+
 @media only screen and (min-width: 600px) {
     .app {
         max-width: 500px;
         margin: 30px auto;
-        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
         border-radius: 5px;
         height: 90vh;
         display: flex;
         flex-direction: column;
+    }
+
+    .theme-dark {
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .theme-light {
+        box-shadow: 0px 10px 15px rgba(128, 128, 128, 0.5);
     }
 }
 

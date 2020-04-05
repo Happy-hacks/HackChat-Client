@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom';
 // context
 import { AppContext } from './App';
 
-// assets
-//import test from '../assets/x.png';
-
 const Menu = () => {
 	const context = useContext(AppContext);
 

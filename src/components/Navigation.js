@@ -24,9 +24,23 @@ const Navigation = () => {
 	return (
 		<div className="app__navigation">
 			<button onClick={() => redirectBack()}>back</button>
-			<button onClick={() => context.config.showMenu()}>menu</button>
+			<MenuBtn showMenu={context.config.showMenu()} />
 		</div>
 	);
 };
+
+const MenuBtn = ({ showMenu }) => (
+	<svg
+		width="20"
+		height="20"
+		viewBox="0 0 260 260"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		onClick={() => showMenu()}
+	>
+		<line x1="20" y1="85" x2="240" y2="85" stroke="#D7E0E9" strokeWidth="30" strokeLinecap="round" />
+		<line x1="70" y1="185" x2="240" y2="185" stroke="#D7E0E9" strokeWidth="30" strokeLinecap="round" />
+	</svg>
+);
 
 export default Navigation;

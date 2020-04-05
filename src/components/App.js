@@ -17,6 +17,21 @@ const App = () => {
 	const [handle, setHandle] = useState('');
 	const [menu, setMenu] = useState(false);
 	const [socket, setSocket] = useState(null);
+	const [theme, setTheme] = useState({ palette: 'dark', name: 'user-dark' });
+
+	const systemTheme = () => {
+		if (window.matchMedia) {
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				return { palette: 'dark', name: 'system-dark' };
+			} else return { palette: 'light', name: 'system-light' };
+		} else return theme;
+	};
+
+	const handleTheme = () => ({
+		dark: () => setTheme({ palette: 'dark', name: 'user-dark' }),
+		light: () => setTheme({ palette: 'light', name: 'user-light' }),
+		system: () => setTheme(systemTheme())
+	});
 
 	const signIn = (handle) => {
 		setSocket(io(env.SOCKET_HOST));
@@ -36,13 +51,13 @@ const App = () => {
 
 	const appContext = {
 		auth: { authenticated, signIn, signOut, handle },
-		config: { theme: 'default', menu, showMenu, hideMenu },
+		config: { theme, handleTheme, menu, showMenu, hideMenu },
 		socket
 	};
 
 	return (
 		<AppContext.Provider value={appContext}>
-			<div className="app">
+			<div className={`app theme-${theme.palette}`}>
 				<Router>
 					<Navigation />
 					<Routes authenticated={authenticated} />

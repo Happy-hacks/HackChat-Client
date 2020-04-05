@@ -6,10 +6,6 @@
     flex-direction: column;
     justify-content: space-between;
 
-    h2 {
-        @include title();
-    }
-
     .login__form {
         display: flex;
         flex-direction: column;
@@ -42,5 +38,17 @@
         .login__submit {
             width: 100px;
         }
+    }
+}
+
+.theme-dark>.login {
+    &>h2 {
+        @include title('dark');
+    }
+}
+
+.theme-light>.login {
+    &>h2 {
+        @include title('light');
     }
 }

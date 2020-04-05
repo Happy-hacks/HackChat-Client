@@ -32,9 +32,22 @@ $error-light: rgb(255, 60, 0);
 $error-dark: rgb(255, 0, 98);
 $error-gradient: linear-gradient(135deg, $error-light, $error-dark);
 
-@mixin title() {
-    font-size: 18px;
-    font-weight: normal;
-    text-align: center;
-    color: $main-color-opaque;
+@mixin title($theme) {
+    @if $theme=='dark' {
+        font-size: 18px;
+        font-weight: normal;
+        text-align: center;
+        color: $main-color-opaque;
+    }
+
+    @else if $theme=='light' {
+        font-size: 18px;
+        font-weight: normal;
+        text-align: center;
+        color: blue;
+    }
+
+    @else {
+        @error "Unknown direction #{$direction}.";
+    }
 }

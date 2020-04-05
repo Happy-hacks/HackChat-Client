@@ -1,12 +1,20 @@
 @import 'variables.scss';
 
 .app__preferences {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
 
-    height: 100%;
-h2 {
-        @include title();
+.theme-dark>.app__preferences {
+    &>h2 {
+        @include title('dark');
+    }
+}
+
+.theme-light>.app__preferences {
+    &>h2 {
+        @include title('light');
     }
 }
