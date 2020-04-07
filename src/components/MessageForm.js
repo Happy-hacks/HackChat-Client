@@ -1,5 +1,8 @@
 import React, { useState, useContext } from 'react';
 
+// libraries
+import { useCookies } from 'react-cookie';
+
 // components
 import EmojiSelector from './EmojiSelector';
 
@@ -12,6 +15,7 @@ import setEmojis from '../scripts/setEmojis';
 const MessageForm = ({ showEmojis }) => {
 	const [message, setMessage] = useState('');
 	const context = useContext(AppContext);
+	const [cookies] = useCookies(['handle']);
 
 	const onSubmit = (event) => {
 		event.preventDefault();
@@ -20,8 +24,8 @@ const MessageForm = ({ showEmojis }) => {
 		const transformedMessage = setEmojis(message);
 		context.socket.emit('chat', {
 			message: transformedMessage,
-			handle: context.auth.handle,
-			id: context.socket.id
+			handle: cookies.handle,
+			id: context.socket.id,
 		});
 		setMessage('');
 	};
@@ -32,7 +36,7 @@ const MessageForm = ({ showEmojis }) => {
 
 		if (keyCode === 13 && event.shiftKey) setMessage(message);
 		else if (keyCode === 13) return onSubmit(event);
-		context.socket.emit('typing', context.auth.handle);
+		context.socket.emit('typing', cookies.handle);
 	};
 
 	const appendEmoji = (emoji) => {
@@ -44,7 +48,7 @@ const MessageForm = ({ showEmojis }) => {
 			<div className="chat-input__message">
 				<textarea
 					className="chat-input__message"
-					placeholder="message... shift + enter for newline"
+					placeholder={`message... \nshift + enter for newline`}
 					name="message"
 					onChange={(event) => setMessage(event.target.value)}
 					onKeyPress={(event) => onTyping(event)}

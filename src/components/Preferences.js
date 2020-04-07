@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import '../sass/Preferences.scss';
 
-// context
-import { AppContext } from './App';
+// libraries
+import { useCookies } from 'react-cookie';
 
 const Preferences = () => (
 	<div className="app__preferences">
@@ -12,14 +12,20 @@ const Preferences = () => (
 );
 
 const ThemeSelector = () => {
-	const { config } = useContext(AppContext);
+	const [, setCookie] = useCookies(['theme']);
+
+	const setTheme = {
+		dark: () => setCookie('theme', 'dark', { path: '/', maxAge: 3600 }),
+		light: () => setCookie('theme', 'light', { path: '/', maxAge: 3600 }),
+		system: () => setCookie('theme', 'system', { path: '/', maxAge: 3600 }),
+	};
 
 	return (
 		<div className="preferences__theme-selector">
 			<h3>theme selector</h3>
-			<button onClick={() => config.handleTheme().dark()}>dark</button>
-			<button onClick={() => config.handleTheme().light()}>light</button>
-			<button onClick={() => config.handleTheme().system()}>system</button>
+			<button onClick={() => setTheme.dark()}>dark</button>
+			<button onClick={() => setTheme.light()}>light</button>
+			<button onClick={() => setTheme.system()}>system</button>
 		</div>
 	);
 };

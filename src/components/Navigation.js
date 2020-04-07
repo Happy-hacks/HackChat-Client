@@ -23,11 +23,45 @@ const Navigation = () => {
 
 	return (
 		<div className="app__navigation">
-			<button onClick={() => redirectBack()}>back</button>
+			<BackBtn redirectBack={redirectBack} />
 			<MenuBtn showMenu={() => context.config.showMenu()} />
 		</div>
 	);
 };
+
+const BackBtn = ({ redirectBack }) => (
+	<svg
+		width="20"
+		height="20"
+		viewBox="0 0 260 260"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		onClick={() => redirectBack()}
+	>
+		<line x1="139" y1="129.787" x2="227.787" y2="41" stroke="#D7E0E9" strokeWidth="30" strokeLinecap="round" />
+		<line x1="29" y1="129.787" x2="117.787" y2="41" stroke="#D7E0E9" strokeWidth="30" strokeLinecap="round" />
+		<line
+			x1="15"
+			y1="-15"
+			x2="140.563"
+			y2="-15"
+			transform="matrix(0.707107 0.707107 0.707107 -0.707107 139 110)"
+			stroke="#D7E0E9"
+			strokeWidth="30"
+			strokeLinecap="round"
+		/>
+		<line
+			x1="15"
+			y1="-15"
+			x2="140.563"
+			y2="-15"
+			transform="matrix(0.707107 0.707107 0.707107 -0.707107 29 110)"
+			stroke="#D7E0E9"
+			strokeWidth="30"
+			strokeLinecap="round"
+		/>
+	</svg>
+);
 
 const MenuBtn = ({ showMenu }) => (
 	<svg

@@ -3,12 +3,19 @@ import '../sass/Menu.scss';
 
 // libraries
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 // context
 import { AppContext } from './App';
 
 const Menu = () => {
 	const context = useContext(AppContext);
+
+	const [, , removeCookie] = useCookies(['authenticated']);
+
+	const signOut = () => {
+		removeCookie('authenticated');
+	};
 
 	return (
 		<div className="navigation__menu">
@@ -24,7 +31,7 @@ const Menu = () => {
 				<Link to={'/preferences'} onClick={() => context.config.hideMenu()}>
 					<LinkLabel title="Preferences" icon={undefined} />
 				</Link>
-				<Link to={'/login'} onClick={() => context.auth.signOut()}>
+				<Link to={'/login'} onClick={() => signOut()}>
 					<LinkLabel title="Sign out" icon={undefined} />
 				</Link>
 			</div>

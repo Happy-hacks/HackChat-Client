@@ -1,6 +1,7 @@
 import React from 'react';
 
 // libraries
+import { useCookies } from 'react-cookie';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 // components
@@ -8,9 +9,13 @@ import Login from './Login';
 import Channel from './Channel';
 import Preferences from './Preferences';
 
-const Routes = ({ authenticated }) => {
+const Routes = () => {
+	const [cookies] = useCookies(['authenticated']);
+
 	const authenticate = (component) => {
-		return authenticated ? component : <Redirect to="/login" />;
+		if (cookies.authenticated === 'true') {
+			return component;
+		} else return <Redirect to="/login" />;
 	};
 
 	return (

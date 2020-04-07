@@ -31,7 +31,7 @@
                 display: inline-block;
                 color: $white;
                 padding: 10px;
-                border-radius: 10px;
+                border-radius: 10px 10px 10px 0px;
                 background-image: $vibrant-gradient;
                 box-shadow: 3px 3px 10px rgba($vibrant-light, 0.25);
             }
@@ -44,6 +44,7 @@
             pre {
                 background-image: none;
                 background-color: $messages-soft;
+                border-radius: 10px 10px 0px 10px;
                 box-shadow: -3px -3px 10px rgba($messages-soft, 0.25);
 
             }

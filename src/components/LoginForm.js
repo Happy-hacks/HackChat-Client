@@ -1,19 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 // libraries
 import { Redirect } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 // scripts
 import Env from '../scripts/environment';
 
-// context
-import { AppContext } from './App';
-
 const LoginForm = ({ handleError }) => {
-	const [handle, setHandle] = useState('');
+	const [cookies, setCookie] = useCookies(['handle', 'authenticated']);
+	const [authenticated, setAuthenticated] = useState(false);
 	const [password, setPassword] = useState('');
-
-	const context = useContext(AppContext);
+	const [handle, setHandle] = useState(cookies.handle || '');
 
 	const setValues = (event) => {
 		if (event.target.name === 'handle') setHandle(event.target.value);
@@ -23,7 +21,7 @@ const LoginForm = ({ handleError }) => {
 	const ERROR = {
 		authentication: { error: 'Authentication Error', message: 'No access for this Username and Password' },
 		input: { error: 'Input Error', message: 'Username and Password are required' },
-		connection: { error: 'Connection Error', message: 'Cant connect to Servers' }
+		connection: { error: 'Connection Error', message: 'Cant connect to Servers' },
 	};
 
 	// needs refracturing
@@ -38,17 +36,23 @@ const LoginForm = ({ handleError }) => {
 		const options = (body) => ({
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(body)
+			body: JSON.stringify(body),
 		});
 
 		const response = await fetch(Env.API.LOGIN, options({ handle, password }));
 		const json = await response.json();
 
 		if (json.error) return handleError(ERROR.authentication);
-		else context.auth.signIn(json.handle);
+		else {
+			setCookie('handle', handle, { path: '/', maxAge: 2592000 }); // expires in 30 days
+			setCookie('authenticated', true, { path: '/', maxAge: 1296000 }); // expires in 15 days
+			setAuthenticated(true);
+		}
 	};
 
-	if (context.auth.authenticated) return <Redirect to="/" />;
+	if (authenticated) {
+		return <Redirect to="/" />;
+	}
 
 	return (
 		<form className="login__form">
@@ -58,6 +62,7 @@ const LoginForm = ({ handleError }) => {
 				name="handle"
 				autoFocus
 				onChange={(event) => setValues(event)}
+				value={handle}
 			/>
 
 			<input
@@ -69,7 +74,7 @@ const LoginForm = ({ handleError }) => {
 				value={password}
 			/>
 
-			<input className="login__submit" type="submit" value="enter" onClick={(event) => onSubmit(event)} />
+			<input className="login__submit" type="submit" value="➤" onClick={(event) => onSubmit(event)} />
 		</form>
 	);
 };
