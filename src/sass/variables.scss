@@ -51,3 +51,7 @@ $error-gradient: linear-gradient(135deg, $error-light, $error-dark);
         @error "Unknown direction #{$direction}.";
     }
 }
+
+$navigation-red: rgb(255, 77, 70);
+$navigation-yellow: rgb(255, 185, 41);
+$navigation-green: rgb(37, 199, 58);

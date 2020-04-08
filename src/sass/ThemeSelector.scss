@@ -1,0 +1,137 @@
+@import 'variables.scss';
+
+.preferences__theme-selector {
+    margin: 2rem;
+
+    .theme-selector__label {
+        font-size: 1.5rem;
+    }
+
+    .theme-selector__theme-previews {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .theme-previews__theme-preview-wrapper {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem;
+
+            .theme-previews__theme {
+                font-size: 1rem;
+                margin: 1rem;
+                opacity: 0.5;
+            }
+
+            &.selected {
+                zoom: 150%;
+
+                .theme-previews__theme {
+                    opacity: 1;
+                }
+            }
+
+            .theme-preview-wrapper__theme-preview {
+                width: 6rem;
+                height: 9rem;
+                background-color: #dbe7f2;
+                box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+                border-radius: 0.6rem;
+                overflow: hidden;
+
+                &.dark-theme {
+                    background-color: $base-color;
+                }
+
+                &.light-theme {
+                    background-color: #dbe7f2;
+                }
+
+                &.system-theme {
+                    background-color: $base-color;
+                }
+
+                .theme-preview__navigation {
+                    display: flex;
+                    margin: 0.4rem;
+                    margin-bottom: 0.8rem;
+
+                    span {
+                        height: 0.4rem;
+                        width: 0.4rem;
+                        margin: 0.15rem;
+                        border-radius: 50%;
+                    }
+
+                    .navigation__red {
+                        background-color: $navigation-red;
+                    }
+
+                    .navigation__yellow {
+                        background-color: $navigation-yellow;
+                    }
+
+                    .navigation__green {
+                        background-color: $navigation-green;
+                    }
+                }
+
+                .theme-preview__message {
+                    background-image: $vibrant-gradient;
+                    border-radius: .2rem;
+                    margin: 5%;
+                    box-shadow: 3px 3px 10px rgba($vibrant-light, 0.25);
+                }
+
+                .message-1 {
+                    height: 14%;
+                    width: 60%;
+                }
+
+                .message-2 {
+                    height: 7%;
+                    width: 15%;
+                }
+
+                .message-3 {
+                    height: 7%;
+                    width: 30%;
+                }
+
+                .message-4 {
+                    height: 14%;
+                    width: 30%;
+                }
+
+                .message-5 {
+                    height: 7%;
+                    width: 15%;
+                }
+            }
+        }
+    }
+}
+
+// themes
+
+.theme-dark {
+    .theme-selector__label {
+        color: $main-color;
+    }
+
+    .theme-previews__theme {
+        color: $main-color;
+    }
+}
+
+.theme-light {
+    .theme-selector__label {
+        color: #222;
+    }
+
+    .theme-previews__theme {
+        color: #222;
+    }
+}
