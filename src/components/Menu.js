@@ -5,6 +5,9 @@ import '../sass/Menu.scss';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
+// components
+import { MenuIcon } from './Icons';
+
 // context
 import { AppContext } from './App';
 
@@ -20,7 +23,7 @@ const Menu = () => {
 	return (
 		<div className="navigation__menu">
 			<div className="menu__navigation">
-				<button onClick={() => context.config.hideMenu()}>Hide</button>
+				<MenuIcon onClick={() => context.config.hideMenu()} />
 			</div>
 
 			<h2>menu</h2>

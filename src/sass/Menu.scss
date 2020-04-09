@@ -1,63 +1,64 @@
 @import 'variables.scss';
 
 .navigation__menu {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 
-    .menu__navigation {
-        height: 4.5rem;
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: flex-end;
-        width: 100%;
+	.menu__navigation {
+		height: 4.5rem;
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: flex-end;
+		width: 100%;
 
-        button {
-            margin: 1rem;
-            height: 2rem;
-        }
-    }
+		button {
+			margin: 1rem;
+			height: 2rem;
+		}
+	}
 
-    .menu__links {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-    }
+	.menu__links {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 100%;
+	}
 
-    .menu__link {
-        size: 2rem;
-    }
+	.menu__link {
+		size: 2rem;
+		margin: 2rem;
+	}
 }
 
 // themes
 
-.theme-dark>.navigation__menu {
-    background-color: $base-color;
+.theme-dark > .navigation__menu {
+	background-color: $base-color;
 
-    h2 {
-        @include title('dark');
-    }
+	h2 {
+		@include title('dark');
+	}
 
-    .menu__link {
-        color: $main-color;
-    }
+	.menu__link {
+		color: $main-color;
+	}
 }
 
-.theme-light>.navigation__menu {
-    background-color: white;
+.theme-light > .navigation__menu {
+	background-color: white;
 
-    h2 {
-        @include title('light');
-    }
+	h2 {
+		@include title('light');
+	}
 
-    .menu__link {
-        color: black;
-    }
+	.menu__link {
+		color: black;
+	}
 }

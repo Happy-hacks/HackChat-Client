@@ -4,6 +4,9 @@ import '../sass/ThemeSelector.scss';
 // libraries
 import { useCookies } from 'react-cookie';
 
+// components
+import { ThemePreviewCustom, ThemePreviewSystem } from './ThemePreviews';
+
 const ThemeSelector = () => {
 	const [themes, setThemes] = useState(['light', 'dark', 'system']);
 
@@ -30,79 +33,12 @@ const ThemeSelector = () => {
 
 			<div className="theme-selector__theme-previews">
 				{themes.map((theme, key) => {
-					if (theme === 'system')
-						return <ThemePreviewSystem setTheme={setTheme} key={key} selected={theme === cookies.theme} />;
-					else
-						return (
-							<ThemePreview
-								theme={theme}
-								setTheme={setTheme}
-								key={key}
-								selected={theme === cookies.theme}
-							/>
-						);
+					if (theme === 'system') {
+						return <ThemePreviewSystem theme={theme} setTheme={() => setTheme(theme)} selected={theme === cookies.theme} key={key} />;
+					} else {
+						return <ThemePreviewCustom theme={theme} setTheme={() => setTheme(theme)} key={key} selected={theme === cookies.theme} />;
+					}
 				})}
-			</div>
-		</div>
-	);
-};
-
-const ThemePreview = ({ theme, setTheme, selected }) => {
-	const setClass = () => {
-		if (selected) return 'theme-previews__theme-preview-wrapper selected';
-		else return 'theme-previews__theme-preview-wrapper';
-	};
-
-	return (
-		<div className={setClass()} onClick={() => setTheme(theme)}>
-			<label className="theme-previews__theme">{theme}</label>
-			<div className={`theme-preview-wrapper__theme-preview ${theme}-theme`}>
-				<div className="theme-preview__navigation">
-					<span className="navigation__red" />
-					<span className="navigation__yellow" />
-					<span className="navigation__green" />
-				</div>
-
-				<div className="theme-preview__message message-1" />
-				<div className="theme-preview__message message-2" />
-				<div className="theme-preview__message message-3" />
-				<div className="theme-preview__message message-4" />
-				<div className="theme-preview__message message-5" />
-			</div>
-		</div>
-	);
-};
-
-const ThemePreviewSystem = ({ setTheme, selected }) => {
-	const setClass = () => {
-		if (selected) return 'theme-previews__theme-preview-wrapper selected';
-		else return 'theme-previews__theme-preview-wrapper';
-	};
-
-	return (
-		<div className={setClass()} onClick={() => setTheme('system')}>
-			<label className="theme-previews__theme">system</label>
-
-			<div className="theme-preview-wrapper__theme-preview dark-theme">
-				<div className="theme-preview__navigation">
-					<span className="navigation__red" />
-					<span className="navigation__yellow" />
-					<span className="navigation__green" />
-				</div>
-
-				<div className="theme-preview__message message-1" />
-				<div className="theme-preview__message message-2" />
-
-				<div className="theme-preview-wrapper__theme-preview light-theme">
-					<div className="theme-preview__navigation">
-						<span className="navigation__red" />
-						<span className="navigation__yellow" />
-						<span className="navigation__green" />
-					</div>
-
-					<div className="theme-preview__message message-1" />
-					<div className="theme-preview__message message-2" />
-				</div>
 			</div>
 		</div>
 	);

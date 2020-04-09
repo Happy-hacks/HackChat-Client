@@ -1,0 +1,19 @@
+@import 'variables.scss';
+
+.icon {
+	width: 2rem;
+	margin: 1rem;
+}
+
+// themes
+.theme-dark .icon {
+	line {
+		stroke: white;
+	}
+}
+
+.theme-light .icon {
+	line {
+		stroke: grey;
+	}
+}
