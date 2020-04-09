@@ -25,6 +25,13 @@
 
 			.theme-preview {
 				width: 100%;
+
+				.theme-preview-fill-dark {
+					fill: $base-color;
+				}
+				.theme-preview-fill-light {
+					fill: white;
+				}
 			}
 
 			&.theme-selected {

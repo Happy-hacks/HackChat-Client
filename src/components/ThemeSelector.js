@@ -20,7 +20,7 @@ const ThemeSelector = () => {
 
 	useEffect(() => {
 		focusTheme[cookies.theme]();
-	}, [cookies.theme]);
+	}, []);
 
 	const setTheme = (theme) => {
 		setCookie('theme', theme, { path: '/', maxAge: 3600 });

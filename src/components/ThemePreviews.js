@@ -10,7 +10,7 @@ const ThemePreviewCustom = ({ theme, setTheme, selected }) => {
 			<label className="theme-preview-label">{theme}</label>
 			<svg viewBox="0 0 200 350" fill="none" xmlns="http://www.w3.org/2000/svg" className="theme-preview">
 				{/* background */}
-				<rect width="100%" height="100%" rx="20" fill="#17212C" />
+				<rect width="100%" height="100%" rx="20" fill="#17212C" className={`theme-preview-fill-${theme}`} />
 
 				{/* navigation */}
 				<g transform="translate(20, 15)">
@@ -56,8 +56,8 @@ const ThemePreviewSystem = ({ theme, setTheme, selected }) => {
 			<label className="theme-preview-label">{theme}</label>
 			<svg viewBox="0 0 200 350" fill="none" xmlns="http://www.w3.org/2000/svg" className="theme-preview">
 				{/* background */}
-				<rect width="100%" height="100%" rx="20" fill="#17212C" />
-				<rect y="150" width="100%" height="200" rx="20" fill="#fff" />
+				<rect width="100%" height="100%" rx="20" fill="#17212C" className="theme-preview-fill-dark" />
+				<rect y="150" width="100%" height="200" rx="20" fill="#fff" className="theme-preview-fill-light" />
 
 				{/* navigation top */}
 				<g transform="translate(20, 15)">
