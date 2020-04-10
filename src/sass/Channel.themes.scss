@@ -1,0 +1,29 @@
+@import 'variables.scss';
+
+.theme-dark > .channel {
+	h2 {
+		@include title('dark');
+	}
+
+	.chat-input {
+		border-top: 0.5px solid $main-color-opaque;
+
+		&::placeholder {
+			color: $main-color-opaque;
+		}
+	}
+}
+
+.theme-light > .channel {
+	h2 {
+		@include title('light');
+	}
+
+	.chat-input {
+		border-top: 0.5px solid blue;
+
+		&::placeholder {
+			color: blue;
+		}
+	}
+}

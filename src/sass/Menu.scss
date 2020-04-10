@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@import 'Menu.themes.scss';
 
 .navigation__menu {
 	position: absolute;
@@ -34,31 +34,5 @@
 	.menu__link {
 		size: 2rem;
 		margin: 2rem;
-	}
-}
-
-// themes
-
-.theme-dark > .navigation__menu {
-	background-color: $base-color;
-
-	h2 {
-		@include title('dark');
-	}
-
-	.menu__link {
-		color: $main-color;
-	}
-}
-
-.theme-light > .navigation__menu {
-	background-color: white;
-
-	h2 {
-		@include title('light');
-	}
-
-	.menu__link {
-		color: black;
 	}
 }

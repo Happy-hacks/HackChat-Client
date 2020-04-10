@@ -1,57 +1,46 @@
 @import 'variables.scss';
+@import 'Login.themes.scss';
 
 .login {
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
-    .login__form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+	.login__form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
-        margin: 50px;
+		margin: 50px;
 
-        input {
-            font-size: 1.5em;
-            margin-top: 25px;
-            border: none;
-            outline: none;
+		input {
+			font-size: 1.5em;
+			margin-top: 25px;
+			border: none;
+			outline: none;
 
-            &::placeholder {
-                color: $main-color-opaque;
-                font-style: italic;
-            }
-        }
+			&::placeholder {
+				color: $main-color-opaque;
+				font-style: italic;
+			}
+		}
 
-        .login__handle,
-        .login__password {
-            color: $main-color;
-            text-align: center;
-            height: 60px;
-            background: none;
-            border-bottom: 0.5px solid $main-color-opaque;
-        }
+		.login__handle,
+		.login__password {
+			color: $main-color;
+			text-align: center;
+			height: 60px;
+			background: none;
+			border-bottom: 0.5px solid $main-color-opaque;
+		}
 
-        .login__submit {
-            color: white;
-            width: 100px;
-            border-radius: 10px 0px 10px 0px;
-            background-image: $vibrant-gradient;
-        }
-    }
-}
-
-.theme-dark>.login {
-    &>h2 {
-        @include title('dark');
-    }
-}
-
-.theme-light>.login {
-    &>h2 {
-        @include title('light');
-    }
+		.login__submit {
+			color: white;
+			width: 100px;
+			border-radius: 10px 0px 10px 0px;
+			background-image: $vibrant-gradient;
+		}
+	}
 }

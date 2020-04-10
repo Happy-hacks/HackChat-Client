@@ -78,4 +78,4 @@ const SendIcon = ({ onClick }) => (
 	</svg>
 );
 
-export { MenuIcon, BackIcon, EmojiIcon, ToolbarIcon, PreferencesIcon };
+export { MenuIcon, BackIcon, EmojiIcon, ToolbarIcon, PreferencesIcon, SendIcon };

@@ -1,0 +1,13 @@
+@import 'variables.scss';
+
+.theme-dark .login {
+	& > h2 {
+		@include title('dark');
+	}
+}
+
+.theme-light .login {
+	& > h2 {
+		@include title('light');
+	}
+}

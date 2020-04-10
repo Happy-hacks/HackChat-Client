@@ -1,70 +1,43 @@
 @import 'variables.scss';
+@import 'Channel.themes.scss';
 
 .channel {
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
-    .chat-input {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+	.chat-input {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 
-        border-top: 0.5px solid $main-color-opaque;
+		border-top: 0.5px solid $main-color-opaque;
 
-        .chat-input__message {
-            display: flex;
+		.chat-input__message {
+			display: flex;
 
-            font-size: 16px;
-            width: 100%;
-            color: $main-color;
-            background: none;
-            border: none;
-            outline: none;
-            resize: none;
+			font-size: 16px;
+			width: 100%;
+			color: $main-color;
+			background: none;
+			border: none;
+			outline: none;
+			resize: none;
 
-            textarea {
-                padding: 1.5rem;
-            }
+			textarea {
+				padding: 1.5rem;
+			}
 
-            &::placeholder {
-                font-style: italic;
-            }
-        }
+			&::placeholder {
+				font-style: italic;
+			}
+		}
 
-        .chat-input__submit {
-            margin: 30px;
-            width: 100px;
-        }
-    }
-}
-
-.theme-dark>.channel {
-    h2 {
-        @include title('dark');
-    }
-
-    .chat-input {
-        border-top: 0.5px solid $main-color-opaque;
-
-        &::placeholder {
-            color: $main-color-opaque;
-        }
-    }
-}
-
-.theme-light>.channel {
-    h2 {
-        @include title('light');
-    }
-
-    .chat-input {
-        border-top: 0.5px solid blue;
-
-        &::placeholder {
-            color: blue;
-        }
-    }
+		.chat-input__submit {
+			margin: 30px;
+			width: 100px;
+		}
+	}
 }

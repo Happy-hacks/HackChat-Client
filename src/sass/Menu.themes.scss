@@ -1,0 +1,25 @@
+@import 'variables.scss';
+
+.theme-dark > .navigation__menu {
+	background-color: $base-color;
+
+	h2 {
+		@include title('dark');
+	}
+
+	.menu__link {
+		color: $main-color;
+	}
+}
+
+.theme-light > .navigation__menu {
+	background-color: white;
+
+	h2 {
+		@include title('light');
+	}
+
+	.menu__link {
+		color: black;
+	}
+}

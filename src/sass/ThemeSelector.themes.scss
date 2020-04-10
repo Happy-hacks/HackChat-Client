@@ -1,0 +1,29 @@
+@import 'variables.scss';
+
+.theme-dark .preferences__theme-selector {
+	.theme-selector__label {
+		color: white;
+	}
+
+	.theme-preview-container {
+		filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.7));
+
+		.theme-preview-label {
+			color: white;
+		}
+	}
+}
+
+.theme-light .preferences__theme-selector {
+	.theme-selector__label {
+		color: grey;
+	}
+
+	.theme-preview-container {
+		filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.4));
+
+		.theme-preview-label {
+			color: grey;
+		}
+	}
+}
