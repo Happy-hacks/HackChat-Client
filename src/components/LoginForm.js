@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 // scripts
-import Env from '../scripts/environment';
+require('dotenv').config();
 
 const LoginForm = ({ handleError }) => {
 	const [cookies, setCookie] = useCookies(['handle', 'authenticated']);
@@ -39,7 +39,7 @@ const LoginForm = ({ handleError }) => {
 			body: JSON.stringify(body),
 		});
 
-		const response = await fetch(Env.API.LOGIN, options({ handle, password }));
+		const response = await fetch(process.env.REACT_APP_SERVER_AUTH, options({ handle, password }));
 		const json = await response.json();
 
 		if (json.error) return handleError(ERROR.authentication);
@@ -56,23 +56,9 @@ const LoginForm = ({ handleError }) => {
 
 	return (
 		<form className="login__form">
-			<input
-				className="login__handle"
-				placeholder="handle"
-				name="handle"
-				autoFocus
-				onChange={(event) => setValues(event)}
-				value={handle}
-			/>
+			<input className="login__handle" placeholder="handle" name="handle" autoFocus onChange={(event) => setValues(event)} value={handle} />
 
-			<input
-				className="login__password"
-				placeholder="password"
-				type="password"
-				name="password"
-				onChange={(event) => setValues(event)}
-				value={password}
-			/>
+			<input className="login__password" placeholder="password" type="password" name="password" onChange={(event) => setValues(event)} value={password} />
 
 			<input className="login__submit" type="submit" value="➤" onClick={(event) => onSubmit(event)} />
 		</form>

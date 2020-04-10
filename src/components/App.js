@@ -11,7 +11,7 @@ import Navigation from './Navigation';
 import Routes from './Routes';
 
 // scripts
-import env from '../scripts/environment';
+require('dotenv').config();
 
 const App = () => {
 	const [menu, setMenu] = useState(false);
@@ -20,7 +20,7 @@ const App = () => {
 
 	const initializeSocket = () => {
 		setSocket(
-			io(env.SOCKET_HOST, {
+			io(process.env.REACT_APP_SERVER_SOCKET, {
 				query: { handle: cookies.handle },
 			})
 		);

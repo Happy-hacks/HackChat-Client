@@ -1,0 +1,17 @@
+@import 'variables.scss';
+
+.theme-dark > .app__preferences {
+	background-color: $base-color;
+
+	h2 {
+		@include title('dark');
+	}
+}
+
+.theme-light > .app__preferences {
+	background-color: white;
+
+	h2 {
+		@include title('light');
+	}
+}
