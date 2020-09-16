@@ -2,39 +2,42 @@ import React from 'react';
 import '../sass/Icons.scss';
 
 const MenuIcon = ({ onClick }) => (
-	<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
-		<g fill="none" stroke="black" strokeWidth="15">
-			<line x1="20" y1="35" x2="80" y2="35" stroke="black" strokeLinecap="round" />
-			<line x1="50" y1="75" x2="80" y2="75" stroke="black" strokeLinecap="round" />
+	<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
+		<g stroke="black" strokeWidth="15" strokeLinecap="round">
+			<line x1="20" y1="35" x2="80" y2="35" />
+			<line x1="50" y1="75" x2="80" y2="75" />
 		</g>
 	</svg>
 );
 
 const BackIcon = ({ onClick }) => (
-	<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
-		<g fill="none" stroke="black" strokeWidth="15">
-			<line x1="20" y1="50" x2="50" y2="20" stroke="black" strokeLinecap="round" />
-			<line x1="50" y1="50" x2="80" y2="20" stroke="black" strokeLinecap="round" />
-			<line x1="20" y1="50" x2="50" y2="80" stroke="black" strokeLinecap="round" />
-			<line x1="50" y1="50" x2="80" y2="80" stroke="black" strokeLinecap="round" />
+	<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
+		<g stroke="black" strokeWidth="15" strokeLinecap="round">
+			<line x1="20" y1="50" x2="50" y2="20" />
+			<line x1="20" y1="50" x2="80" y2="50" />
+			<line x1="20" y1="50" x2="50" y2="80" />
 		</g>
 	</svg>
 );
 
 const EmojiIcon = ({ onClick }) => (
-	<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
-		<circle cx="50" cy="50" fill="#616161" r="40" />
-		<ellipse cx="35" cy="40" rx="10" ry="12" fill="#818181" />
-		<ellipse cx="65" cy="40" rx="10" ry="12" fill="#818181" />
-		<path d="M25,60 a1,1 0 0,0 50,0" fill="#818181" />
+	<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
+		<g fill="#616161">
+			<circle cx="50" cy="50" r="40" fill="#515151" />
+			<ellipse cx="35" cy="40" rx="10" ry="12" />
+			<ellipse cx="65" cy="40" rx="10" ry="12" />
+			<path d="M25,60 a1,1 0 0,0 50,0" />
+		</g>
 	</svg>
 );
 
 const ToolbarIcon = ({ onClick }) => (
 	<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
-		<circle cx="20" cy="50" fill="#616161" r="10" />
-		<circle cx="50" cy="50" fill="#616161" r="10" />
-		<circle cx="80" cy="50" fill="#616161" r="10" />
+		<g fill="#616161">
+			<circle cx="20" cy="50" r="10" />
+			<circle cx="50" cy="50" fill="#616161" r="10" />
+			<circle cx="80" cy="50" fill="#616161" r="10" />
+		</g>
 	</svg>
 );
 
@@ -69,11 +72,11 @@ const PreferencesIcon = ({ onClick }) => (
 );
 
 const SendIcon = ({ onClick }) => (
-	<svg width="500" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
-		<g stroke="black" strokeWidth="10">
-			<line x1="20" y1="50" x2="50" y2="20" stroke="black" strokeLinecap="round" />
-			<line x1="50" y1="20" x2="80" y2="50" stroke="black" strokeLinecap="round" />
-			<line x1="50" y1="20" x2="50" y2="80" stroke="black" strokeLinecap="round" />
+	<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" onClick={() => onClick()} className="icon">
+		<g stroke="black" strokeWidth="10" strokeLinecap="round">
+			<line x1="20" y1="50" x2="50" y2="20" />
+			<line x1="50" y1="20" x2="80" y2="50" />
+			<line x1="50" y1="20" x2="50" y2="80" />
 		</g>
 	</svg>
 );

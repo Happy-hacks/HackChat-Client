@@ -23,7 +23,8 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d build",
+		"kanban": "start https://github.com/Happy-hacks/HackChat/projects/1?fullscreen=true || open https://github.com/Happy-hacks/HackChat/projects/1?fullscreen=true"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

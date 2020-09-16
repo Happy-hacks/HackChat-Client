@@ -15,7 +15,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 function sendSubscription(subscription) {
-	return fetch(`${process.env.REACT_APP_SERVER_HOST}/notifications/subscribe`, {
+	return fetch(`${process.env.REACT_APP_SERVER_HOST}/subscribe`, {
 		method: 'POST',
 		body: JSON.stringify(subscription),
 		headers: {
@@ -24,42 +24,25 @@ function sendSubscription(subscription) {
 	});
 }
 
-export function subscribeUser() {
+export async function subscribeUser() {
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.ready
-			.then(function (registration) {
-				if (!registration.pushManager) {
-					console.log('Push manager unavailable.');
-					return;
-				}
+		const registration = await navigator.serviceWorker.ready;
+		if (!registration.pushManager) return console.warn('Push manager unavailable.');
 
-				registration.pushManager.getSubscription().then(function (existedSubscription) {
-					if (existedSubscription === null) {
-						console.log('No subscription detected, make a request.');
-						registration.pushManager
-							.subscribe({
-								applicationServerKey: convertedVapidKey,
-								userVisibleOnly: true,
-							})
-							.then(function (newSubscription) {
-								console.log('New subscription added.');
-								sendSubscription(newSubscription);
-							})
-							.catch(function (e) {
-								if (Notification.permission !== 'granted') {
-									console.log('Permission was not granted.');
-								} else {
-									console.error('An error ocurred during the subscription process.', e);
-								}
-							});
-					} else {
-						console.log('Existed subscription detected.');
-						sendSubscription(existedSubscription);
-					}
+		const existedSubscription = await registration.pushManager.getSubscription();
+
+		if (!existedSubscription) {
+			try {
+				const newSubscription = await registration.pushManager.subscribe({
+					applicationServerKey: convertedVapidKey,
+					userVisibleOnly: true,
 				});
-			})
-			.catch(function (e) {
-				console.error('An error ocurred during Service Worker registration.', e);
-			});
-	}
+
+				sendSubscription(newSubscription);
+			} catch (error) {
+				if (Notification.permission !== 'granted') console.warn('Permission was not granted.');
+				else console.error('An error ocurred during the subscription process.', error);
+			}
+		} else sendSubscription(existedSubscription);
+	} else console.warn('No Service Worker detected.');
 }

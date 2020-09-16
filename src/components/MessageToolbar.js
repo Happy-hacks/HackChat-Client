@@ -3,6 +3,7 @@ import '../sass/MessageToolbar.scss';
 
 // components
 import Feedback from './Feedback';
+import { ToolbarIcon, EmojiIcon } from './Icons';
 
 const MessageToolbar = ({ feedback, toggleEmojis }) => {
 	const expandToolbar = () => console.log('expand toolbar');
@@ -10,8 +11,8 @@ const MessageToolbar = ({ feedback, toggleEmojis }) => {
 	return (
 		<div className="channel__message-toolbar">
 			<div className="message-toolbar__buttons">
-				<input onClick={() => expandToolbar()} value="..." type="button" />
-				<input onClick={() => toggleEmojis()} value=":)" type="button" />
+				<ToolbarIcon onClick={() => expandToolbar()} />
+				<EmojiIcon onClick={() => toggleEmojis()} />
 			</div>
 			<Feedback feedback={feedback} />
 		</div>

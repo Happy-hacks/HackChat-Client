@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 // components
-import { MenuIcon } from './Icons';
+import { MenuIcon, PreferencesIcon } from './Icons';
 
 // context
 import { AppContext } from './App';
@@ -32,7 +32,7 @@ const Menu = () => {
 					<LinkLabel title="Chat" icon={undefined} />
 				</Link>
 				<Link to={'/preferences'} onClick={() => context.config.hideMenu()}>
-					<LinkLabel title="Preferences" icon={undefined} />
+					<PreferencesIcon onClick={() => {}} />
 				</Link>
 				<Link to={'/login'} onClick={() => signOut()}>
 					<LinkLabel title="Sign out" icon={undefined} />

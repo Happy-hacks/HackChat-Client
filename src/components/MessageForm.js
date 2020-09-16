@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 
 // components
 import EmojiSelector from './EmojiSelector';
+import { SendIcon } from './Icons';
 
 // context
 import { AppContext } from './App';
@@ -55,7 +56,7 @@ const MessageForm = ({ showEmojis }) => {
 					value={message}
 					autoFocus
 				/>
-				<input className="chat-input__submit" type="submit" value="send" onClick={(event) => onSubmit(event)} />
+				<SendIcon className="chat-input__submit" onClick={(event) => onSubmit(event)} />
 			</div>
 			{showEmojis && <EmojiSelector appendEmoji={appendEmoji} />}
 		</form>

@@ -57,9 +57,7 @@ const LoginForm = ({ handleError }) => {
 	return (
 		<form className="login__form">
 			<input className="login__handle" placeholder="handle" name="handle" autoFocus onChange={(event) => setValues(event)} value={handle} />
-
 			<input className="login__password" placeholder="password" type="password" name="password" onChange={(event) => setValues(event)} value={password} />
-
 			<input className="login__submit" type="submit" value="➤" onClick={(event) => onSubmit(event)} />
 		</form>
 	);
